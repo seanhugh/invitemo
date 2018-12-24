@@ -1,24 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
-// Initial Firebase Stuff
-
-// Firebase Import
-
-import * as firebase from 'firebase';
-
-// Initialize Firebase
-
-  var config = {
-    apiKey: "AIzaSyCr4GTWWYd2zZinT7prFYUI25x7kNeESkA",
-    authDomain: "projectx-e57cb.firebaseapp.com",
-    databaseURL: "https://projectx-e57cb.firebaseio.com",
-    projectId: "projectx-e57cb",
-    storageBucket: "projectx-e57cb.appspot.com",
-    messagingSenderId: "291569073073"
-  };
-  firebase.initializeApp(config);
+import MyFire from './MyFire';
+import Home from './Home';
+import Login from './Login';
 
 
 // Output the app
@@ -27,24 +12,31 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {data: 3};
+
+    // Set initial Values for State Data (onLoad)
+    this.state = {user: {},
+                  data: 3};
+
+    // Pass through the callback function to Firebase
+    MyFire.setCallBackFunction(this.updateState.bind(this))
   }
 
-  db = firebase.database();
-  dbRef = this.db.ref().child('data');
-
   componentWillMount(){
-    this.dbRef.on('value', snapshot => {
-      this.setState({
-        data:snapshot.val()
-      });
-    });
+
+    // On Page Load Update User Data
+    MyFire.updateUsers()
+  }
+
+  // Function That Updates the State on Input
+  updateState(newState){
+    this.setState(newState);
   }
 
   render() {
     return (
       <div className="App">
-      <h3>{this.state.data}</h3>
+      <h1>{this.state.data}</h1>
+      {this.state.user ? (<Home />) : (<Login/>)}
       </div>
     );
   }
