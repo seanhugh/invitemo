@@ -1,6 +1,7 @@
 // Firebase Import
 
-import * as firebase from 'firebase';
+ import * as firebase from 'firebase';
+//import firebase, { auth, provider } from 'firebase';
 
 // Initialize Firebase
 
@@ -21,7 +22,15 @@ class MyFire {
   constructor() {
 
    this.db = firebase.database();
-   this.dbRef = this.db.ref().child('data');
+
+  // Auth Stuff
+
+  this.provider = new firebase.auth.GoogleAuthProvider();
+
+  // this.auth = firebase.auth();
+
+   this.dbRef = this.db.ref();
+   // this.dbRef = this.db.ref().child('data');
 
    this.callbackFunction = null;
 
@@ -32,14 +41,78 @@ class MyFire {
     this.callbackFunction = fn;
   }
 
+  async loginWindow(){
+    try {
+      let result = await firebase.auth().signInWithPopup(this.provider)
+       // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
 
+      console.log(token)
+      console.log(user)
 
-  updateUsers(state){
-    this.dbRef.on('value', snapshot => {
-      this.callbackFunction({data:snapshot.val()});
-    // App.updateState(data:snapshot.val());
-    });
+      return [user, token];
+    }
+    catch (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+
+    }
+
   }
+
+// Check to see if user exists. If not, add it.
+  addUser(name, email, uid){
+
+    var postData = {
+      name: name,
+      email: email
+    };
+
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/user/' + uid] = postData;
+
+    return this.dbRef.update(updates);
+  }
+
+// // Create a new group with the current user as the admin
+//   createNewGroup(name, userid) {
+
+//   // Create a new grp
+//   var postData = {
+//     name: "Example Group"
+//   };
+
+//     // Get a key for a new Post.
+//     var newPostKey = this.dbRef.child('groups').push().key;
+
+//     // Write the new post's data simultaneously in the posts list and the user's post list.
+//     var updates = {};
+//     updates['/groups/' + newPostKey] = postData;
+//     updates['/user/' + userid + '/groups' + newPostKey] = 1;
+
+//     return this.dbRef.update(updates);
+//   }
+
+  // updateUsers(state){
+  //   this.dbRef.on('value', snapshot => {
+  //     this.callbackFunction({data:snapshot.val()});
+  //   // App.updateState(data:snapshot.val());
+  //   });
+  // }
+
+  // updateState(state){
+  //   this.callbackFunction(state);
+  // }
+
+  // Check if User Exists
 
 
 }

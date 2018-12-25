@@ -9,9 +9,20 @@ class Login extends Component {
     this.state = {}
   }
 
+  setLogin(fn){
+    this.login = fn;
+  }
+
   render() {
     return (
-      <p>I'm Login</p>
+      <div><p>Im Login</p>
+      <div className="wrapper">
+        {this.props.user ?
+          <button onClick={this.props.data.actions.logout}>Log Out</button>
+          :
+          <button onClick={this.props.data.actions.login}>Log In With Google</button>
+        }
+      </div></div>
     );
   }
 }
