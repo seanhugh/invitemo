@@ -26,9 +26,9 @@ class App extends Component {
     MyFire.setCallBackFunction(this.updateState.bind(this))
   }
 
-  componentWillMount(){
-    // On Page Load Update User Data
-    // MyFire.updateUsers()
+
+  componentDidMount() {
+    this.check_login();
   }
 
   // Function That Updates the State on Input
@@ -38,15 +38,19 @@ class App extends Component {
 
   // set the login options
   async login(){
-   let [user, token] = await MyFire.loginWindow();
-   this.setState({
-    user: token,
-    userData: user
-   })
+    let [user, token] = await MyFire.loginWindow();
+    this.check_login();
 
-  // Add a user with name, email, and token
-  MyFire.addUser(user.displayName, user.email, user.uid);
+    // Add a user with name, email, and token
+    MyFire.addUser(user.displayName, user.email, user.uid);
+  }
 
+  async check_login(){
+    let user = await MyFire.currentUser();
+    this.setState({
+      user: user.uid,
+      userData: user
+    })
   }
 
   // set the logout options
@@ -55,13 +59,14 @@ class App extends Component {
       user: null,
       userData: null
     });
+    MyFire.logout();
   }
 
   render() {
     return (
       <div className="App">
       <h1>{this.state.data}</h1>
-      {this.state.user ? (<Home data={this.state}/>) :
+      {this.state.user ? (<Home data={this.state} />) :
         (<Login data={this.state}/>)}
       </div>
     );

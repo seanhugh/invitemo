@@ -34,6 +34,8 @@ class MyFire {
 
    this.callbackFunction = null;
 
+   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+
   // Keep the state updated
   }
 
@@ -67,7 +69,7 @@ class MyFire {
 
   }
 
-// Check to see if user exists. If not, add it.
+ // Check to see if user exists. If not, add it.
   addUser(name, email, uid){
 
     var postData = {
@@ -82,31 +84,64 @@ class MyFire {
     return this.dbRef.update(updates);
   }
 
-// // Create a new group with the current user as the admin
-//   createNewGroup(name, userid) {
+  // Create a new group with the current user as the admin
+  createNewGroup(name, userid) {
 
-//   // Create a new grp
-//   var postData = {
-//     name: "Example Group"
-//   };
+    // Create a new grp
+    var postData = {
+      metadata: {name: "Example Group"},
+      admins: [userid],
+      users: [userid]
+    };
 
-//     // Get a key for a new Post.
-//     var newPostKey = this.dbRef.child('groups').push().key;
+    // Get a key for a new Post.
+    var newPostKey = this.dbRef.child('groups').push().key;
 
-//     // Write the new post's data simultaneously in the posts list and the user's post list.
-//     var updates = {};
-//     updates['/groups/' + newPostKey] = postData;
-//     updates['/user/' + userid + '/groups' + newPostKey] = 1;
+    console.log(newPostKey,userid)
 
-//     return this.dbRef.update(updates);
-//   }
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/groups/' + newPostKey] = postData;
+    updates['/user/' + userid + '/groups/' + newPostKey] = 1;
 
-  // updateUsers(state){
-  //   this.dbRef.on('value', snapshot => {
-  //     this.callbackFunction({data:snapshot.val()});
-  //   // App.updateState(data:snapshot.val());
-  //   });
-  // }
+    this.dbRef.update(updates);
+  }
+
+  logout(){
+    firebase.auth().signOut().then(function() {
+      console.log("user successfuly signed out")
+    // Sign-out successful.
+    }, function(error) {
+      console.log("error occured while signing user out")
+      // An error happened.
+    });
+  }
+
+  async currentUser(){
+    return new Promise((resolve, reject) => {
+
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          console.log("ASDASDASDASDASD")
+          console.log(user)
+          resolve(user)
+          return;
+        } else {
+          // No user is signed in.
+          console.log("here")
+        }
+      });
+
+
+    })
+  }
+
+    // updateUsers(state){
+    //   this.dbRef.on('value', snapshot => {
+    //     this.callbackFunction({data:snapshot.val()});
+    //   // App.updateState(data:snapshot.val());
+    //   });
+    // }
 
   // updateState(state){
   //   this.callbackFunction(state);
