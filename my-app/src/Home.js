@@ -3,7 +3,7 @@ import MyFire from './MyFire';
 import './Home.css';
 
 // Import Ant Design Components
-import { Input, Layout, Row, Col, Button, Icon } from 'antd';
+import { Avatar, Input, Layout, Row, Col, Button, Icon } from 'antd';
 
 const { Header, Content, Sider } = Layout;
 const Search = Input.Search;
@@ -64,8 +64,8 @@ class Home extends Component {
       <Row className = "full_height">
         <Col span={4} className = "left_col full_height">
           <Header className="header">
-            <Icon type="setting" className="settingsIcon" />
-            <Icon type="plus-circle" className="settingsIcon2" />
+            <Avatar className="settingsIcon" style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>
+            <Button type = "primary" shape="circle" icon="plus" className="settingsIcon2"/>
             <div className="logo" />
           </Header>
 

@@ -15,20 +15,16 @@
 }
 
 .settingsIcon {
-    color: rgba(0,0,0,.7);
-    position: absolute;
-    left: 24px;
-    font-size: 20px;
-    top: 22px;
+    position: absolute!important;
+    left: 18px;
+    top: 16px!important;
     cursor: pointer;
 }
 
 .settingsIcon2 {
-    color: rgba(0,0,0,.7);
-    position: absolute;
-    right: 24px;
-    font-size: 20px;
-    top: 22px;
+    position: absolute!important;
+    right: 18px;
+    top: 16px!important;
     cursor: pointer;
 }
 
@@ -75,4 +71,23 @@
 .groupEl:hover {
     background-color: #e8e8e8;
     cursor: pointer;
+}
+
+
+.ant-btn-primary {
+    color: #fff;
+    background-color: #d8842a;
+    border-color: #d8842a;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+}
+
+.ant-btn-primary.settingsIcon2, .ant-btn-primary.settingsIcon2:active,
+.ant-btn-primary.settingsIcon2:focus {
+    background-color: #d8842a;
+    border-color: #d8842a;
+}
+.ant-btn-primary.settingsIcon2:hover {
+    background-color: #f2923b;
+    border-color: #f2923b;
 }
