@@ -41,6 +41,8 @@ class MyFire {
 
   setCallBackFunction(fn) {
     this.callbackFunction = fn;
+
+    //register this callback with firebase
   }
 
   async loginWindow(){
@@ -107,6 +109,7 @@ class MyFire {
     this.dbRef.update(updates);
   }
 
+  // Log the user out using firebase auth logout
   logout(){
     firebase.auth().signOut().then(function() {
       console.log("user successfuly signed out")
@@ -122,13 +125,9 @@ class MyFire {
 
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          console.log("ASDASDASDASDASD")
-          console.log(user)
           resolve(user)
           return;
         } else {
-          // No user is signed in.
-          console.log("here")
         }
       });
 
@@ -139,13 +138,19 @@ class MyFire {
     // updateUsers(state){
     //   this.dbRef.on('value', snapshot => {
     //     this.callbackFunction({data:snapshot.val()});
-    //   // App.updateState(data:snapshot.val());
     //   });
     // }
 
-  // updateState(state){
-  //   this.callbackFunction(state);
-  // }
+// FIREBASE LOGIC: handle changes in the groups values
+  updateGroups(state){
+    this.dbRef.child('groups').on('value', snapshot => {
+      this.callbackFunction({groups:snapshot.val()});
+    });
+  }
+
+  updateState(state){
+    this.callbackFunction(state);
+  }
 
   // Check if User Exists
 

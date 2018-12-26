@@ -20,7 +20,8 @@ class App extends Component {
                   actions: {
                     login: this.login.bind(this),
                     logout: this.logout.bind(this)
-                  }};
+                  },
+                  groups: null};
 
     // Pass through the callback function to Firebase
     MyFire.setCallBackFunction(this.updateState.bind(this))
@@ -28,7 +29,11 @@ class App extends Component {
 
 
   componentDidMount() {
+    // Check the login status of the user
     this.check_login();
+
+    // Install all event handlers for firebase
+    MyFire.updateGroups();
   }
 
   // Function That Updates the State on Input
@@ -65,7 +70,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>{this.state.data}</h1>
       {this.state.user ? (<Home data={this.state} />) :
         (<Login data={this.state}/>)}
       </div>
