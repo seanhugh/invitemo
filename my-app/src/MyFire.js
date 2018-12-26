@@ -87,19 +87,22 @@ class MyFire {
   }
 
   // Create a new group with the current user as the admin
-  createNewGroup(name, userid) {
-
+  createNewGroup(name, description, privpub, userid) {
+    console.log(description)
+    if (description == null){
+      description = ""
+    }
     // Create a new grp
     var postData = {
-      metadata: {name: "Example Group"},
+      metadata: {name: name,
+                 description: description,
+                 priv: privpub},
       admins: [userid],
       users: [userid]
     };
 
     // Get a key for a new Post.
     var newPostKey = this.dbRef.child('groups').push().key;
-
-    console.log(newPostKey,userid)
 
     // Write the new post's data simultaneously in the posts list and the user's post list.
     var updates = {};
