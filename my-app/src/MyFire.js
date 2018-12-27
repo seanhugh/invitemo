@@ -88,7 +88,7 @@ class MyFire {
 
   // Create a new group with the current user as the admin
   createNewGroup(name, description, privpub, userid) {
-    console.log(description)
+    console.log("IM HERE BOIII")
     if (description == null){
       description = ""
     }
