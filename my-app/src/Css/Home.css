@@ -1,0 +1,134 @@
+.full_height {
+    height: 100vh!important;
+}
+
+.left_col {
+  background-color: #fafafa;
+}
+
+.right_col .header {
+  background-color: #eaeaea
+}
+
+.left_col .header {
+  background-color: #ffaa45
+}
+
+.settingsIcon {
+    position: absolute!important;
+    left: 18px;
+    top: 16px!important;
+    cursor: pointer;
+}
+
+.settingsIcon2 {
+    position: absolute!important;
+    right: 18px;
+    top: 16px!important;
+    cursor: pointer;
+}
+
+.logo {
+    display: inline-block;
+    width: 120px;
+    height: 31px;
+    background: rgba(255,255,255,.2);
+    margin-top: 16px;
+}
+
+.header.ant-layout-header {
+  text-align: center;
+}
+
+.mySearch {
+    padding: 10px;
+}
+
+.groupEl {
+    height: 106px;
+    display: flex;
+    text-align: left;
+}
+
+.groupEl h3 {
+    margin: 19px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+}
+
+.highlight_bar {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    background-color: #efafaf;
+    margin: 24px;
+}
+
+.groupEl p{
+    font-size: 12px;
+}
+
+.groupEl:hover {
+    background-color: #e8e8e8;
+    cursor: pointer;
+}
+
+
+.ant-btn-primary {
+    color: #fff;
+    background-color: #d8842a;
+    border-color: #d8842a;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+}
+
+.ant-btn-primary.settingsIcon2, .ant-btn-primary.settingsIcon2:active,
+.ant-btn-primary.settingsIcon2:focus {
+    background-color: #d8842a;
+    border-color: #d8842a;
+}
+.ant-btn-primary.settingsIcon2:hover {
+    background-color: #f2923b;
+    border-color: #f2923b;
+}
+
+.collection-create-form_last-form-item {
+  margin-bottom: 0;
+}
+
+.allgroups{
+  flex: 2 ;
+  overflow: auto;
+}
+
+/* THE SCROLLING STUFF */
+.ant-col-4.left_col.full_height {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+html, body
+{
+    height: 100vh;
+}
+
+/* Custom Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.05);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,.2);
+}
