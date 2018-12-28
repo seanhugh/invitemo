@@ -28,6 +28,13 @@
     cursor: pointer;
 }
 
+.settingsIcon3 {
+    position: absolute!important;
+    right: 36px;
+    top: 16px!important;
+    cursor: pointer;
+}
+
 .logo {
     display: inline-block;
     width: 120px;

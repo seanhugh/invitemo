@@ -34,6 +34,8 @@ class MyFire {
 
    this.callbackFunction = null;
 
+   this.userDataId = this.userDataId.bind(this)
+
    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
   // Keep the state updated
@@ -144,10 +146,16 @@ class MyFire {
     //   });
     // }
 
+  pick_one(lst){
+    let el = Object.keys(lst)[0]
+    return el
+  }
+
 // FIREBASE LOGIC: handle changes in the groups values
   updateGroups(state){
     this.dbRef.child('groups').on('value', snapshot => {
-      this.callbackFunction({groups:snapshot.val()});
+      this.callbackFunction({groups:snapshot.val(),
+                              active_group: this.pick_one(snapshot.val())});
     });
   }
 
@@ -155,8 +163,71 @@ class MyFire {
     this.callbackFunction(state);
   }
 
-  // Check if User Exists
+// DOWNLOAD USER DATA FOR A GIVEN GROUP ---------------------------------------
 
+  userDataId(id){
+      return new Promise((resolve, reject) => {
+
+      this.db.ref('/user/' + id).once('value').then(function(snapshot) {
+           if (snapshot) {
+            resolve(snapshot.val())
+            return;
+          } else {
+          }
+        });
+
+      })
+  }
+
+  // Get the data for each user in a given group
+  async groupUserData(group){
+    let userList = group.users
+
+    return Promise.all(
+        userList.map(this.userDataId)
+      ).then(allData => {
+      // Put the data into an array and return it
+
+      // Match the data back with its key and push to the object
+      var i;
+      let arr = {};
+      for (i = 0; i < userList.length; i++) {
+        arr[userList[i]] = allData[i]
+      }
+      return {users: arr}
+    });
+  }
+
+
+// DOWNLOAD GROUP INFO FOR GIVEN GROUP ---------------------------------------
+
+// Given a group_id this function downloads all of the data for that group
+//    - Data for that group
+//    - Data for users in the group
+//    - Data for events in the group
+
+  async downloadRightHalf(group){
+
+    return Promise.all([
+
+      // Group Data Here
+      new Promise((resolve, reject) => {
+
+        this.db.ref('/groups/' + group).once('value').then(function(snapshot) {
+             if (snapshot) {
+              resolve(snapshot.val())
+              return;
+            } else {
+            }
+          });
+
+      })
+
+    ]).then(allData => {
+      // Put the data into an array and return it
+      return {group: allData[0]}
+    });
+  }
 
 }
 

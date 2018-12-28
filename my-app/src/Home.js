@@ -38,18 +38,6 @@ class Home extends Component {
 
   }
 
-  // Figure out how tf to make a group active from the start
-  // componentDidMount(){
-  //   console.log(this.state)
-  //   let myGroup = null;
-  //   if(!this.state.groups == null){
-  //     myGroup = Object.keys(this.state.groups)[0]
-  //   }
-  //   this.setState({
-  //     active_group: myGroup
-  //   });
-  // }
-
   // Function That Updates the State on Input
   updateState(newState){
     this.setState(newState);
