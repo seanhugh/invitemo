@@ -35,6 +35,7 @@ class MyFire {
    this.callbackFunction = null;
 
    this.userDataId = this.userDataId.bind(this)
+   this.groupMetadata = this.groupMetadata.bind(this)
 
    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
@@ -47,6 +48,9 @@ class MyFire {
     //register this callback with firebase
   }
 
+
+// LOGIN STUFF ALL GOES HERE ---------------------------------------------------
+
   async loginWindow(){
     try {
       let result = await firebase.auth().signInWithPopup(this.provider)
@@ -55,8 +59,8 @@ class MyFire {
       // The signed-in user info.
       var user = result.user;
 
-      console.log(token)
-      console.log(user)
+      // ADD THE USER TO THE DATABASE IF IT ISNT ALREADY THERE
+      let added = await this.addUser(user.displayName, user.email, user.uid);
 
       return [user, token];
     }
@@ -74,7 +78,7 @@ class MyFire {
   }
 
  // Check to see if user exists. If not, add it.
-  addUser(name, email, uid){
+  async addUser(name, email, uid){
 
     var postData = {
       name: name,
@@ -85,12 +89,57 @@ class MyFire {
     var updates = {};
     updates['/user/' + uid] = postData;
 
-    return this.dbRef.update(updates);
+    let updates2 = await this.dbRef.update(updates);
+
+    return updates2;
   }
+
+  // Given a user ID, retrieve his data from the db
+  async getUserData(id){
+    return new Promise((resolve, reject) => {
+
+      this.db.ref('/user/' + id).once('value').then(function(snapshot) {
+           if (snapshot) {
+            resolve(snapshot.val())
+            return;
+          } else {
+          }
+        });
+
+      })
+  }
+
+  // Log the user out using firebase auth logout
+  logout(){
+    firebase.auth().signOut().then(function() {
+      console.log("user successfuly signed out")
+    // Sign-out successful.
+    }, function(error) {
+      console.log("error occured while signing user out")
+      // An error happened.
+    });
+  }
+
+  async currentUser(){
+    return new Promise((resolve, reject) => {
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            resolve(user)
+            return;
+          } else {
+          }
+        });
+
+
+      })
+    }
+
+// GROUP ADDING FEATURE --------------------------------------------------------
 
   // Create a new group with the current user as the admin
   createNewGroup(name, description, privpub, userid) {
-    console.log("IM HERE BOIII")
+
     if (description == null){
       description = ""
     }
@@ -114,53 +163,61 @@ class MyFire {
     this.dbRef.update(updates);
   }
 
-  // Log the user out using firebase auth logout
-  logout(){
-    firebase.auth().signOut().then(function() {
-      console.log("user successfuly signed out")
-    // Sign-out successful.
-    }, function(error) {
-      console.log("error occured while signing user out")
-      // An error happened.
-    });
+  updateState(state){
+    this.callbackFunction(state);
   }
-
-  async currentUser(){
-    return new Promise((resolve, reject) => {
-
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          resolve(user)
-          return;
-        } else {
-        }
-      });
-
-
-    })
-  }
-
-    // updateUsers(state){
-    //   this.dbRef.on('value', snapshot => {
-    //     this.callbackFunction({data:snapshot.val()});
-    //   });
-    // }
 
   pick_one(lst){
     let el = Object.keys(lst)[0]
     return el
   }
 
-// FIREBASE LOGIC: handle changes in the groups values
-  updateGroups(state){
-    this.dbRef.child('groups').on('value', snapshot => {
-      this.callbackFunction({groups:snapshot.val(),
-                              active_group: this.pick_one(snapshot.val())});
-    });
+
+// GET METADATA FOR ALL GROUPS WHICH USER IS A MEMBER OF ----------------------
+
+// Goal here is to get all the metadata for these groups so that you can display
+//     it on the left column
+
+  groupMetadata(id){
+      let theDB = this.db;
+      return new Promise((resolve, reject) => {
+
+      theDB.ref('/groups/' + id + '/metadata').once('value').then(function(snapshot) {
+           if (snapshot) {
+            resolve(snapshot.val())
+            return;
+          } else {
+          }
+        });
+
+      })
   }
 
-  updateState(state){
-    this.callbackFunction(state);
+  async updateGroups(userData){
+    if(userData.groups){
+      // The user is a member of groups. Gather group data and send to user
+
+      let groupList = Object.keys(userData.groups)
+
+      return Promise.all(
+          groupList.map(this.groupMetadata)
+        ).then(allData => {
+          // Put the data into an array and return it
+
+          // Match the data back with its key and push to the object
+          var i;
+          let arr = {};
+          for (i = 0; i < groupList.length; i++) {
+            arr[groupList[i]] = allData[i]
+          }
+          return {groups: arr}
+      });
+
+
+    } else{
+    // User is not in any groups, return null values for groups to the user
+      return {groups:{}}
+    }
   }
 
 // DOWNLOAD USER DATA FOR A GIVEN GROUP ---------------------------------------

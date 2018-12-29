@@ -25,7 +25,7 @@ class GroupList extends Component {
               <div className = "highlight_bar" />
             </Col>
             <Col span={16}>
-              <h3>{groups[key].metadata.name}</h3>
+              <h3>{groups[key].name}</h3>
               <p>5 others RSVPd to the event <span>Lunch at Grafton Street</span></p>
             </Col>
             </div>

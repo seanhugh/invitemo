@@ -27,15 +27,18 @@ class Home extends Component {
 
     this.state = {
       active_group: null,
-      groups: null
+      groups: {}
     }
 
     // Pass through the callback function to Firebase
-    MyFire.setCallBackFunction(this.updateState.bind(this))
+    MyFire.setCallBackFunction(this.updateState.bind(this));
 
-    // Install all event handlers for firebase
-    MyFire.updateGroups();
+  }
 
+  async componentDidMount(){
+    // pass through userdata to firebase. Return all appropriate group data.
+    let data = await MyFire.updateGroups(this.props.data.userData);
+    this.setState(data);
   }
 
   // Function That Updates the State on Input
@@ -49,21 +52,28 @@ class Home extends Component {
     });
   }
 
+  isEmpty(obj){
+    return (Object.keys(obj).length === 0);
+  }
+
   render() {
     return (
       <div>
       <Row className = "full_height">
         <Col span={4} className = "left_col full_height">
           <Header className="header">
-            <MyAvatar name = {this.props.data.userData.displayName} logOut = {this.props.data.actions.logout}/>
-            <CreateGroupForm uid={this.props.data.userData.uid} />
+            <MyAvatar name = {this.props.data.userData.name} logOut = {this.props.data.actions.logout}/>
+            <CreateGroupForm uid={this.props.data.user} />
             <div className="logo" />
           </Header>
           <div className = "mySearch">
             <Search placeholder="Search for new groups to join!" />
           </div>
 
-          <GroupList groups = {this.state.groups} selectGroup = {this.selectGroup}/>
+
+          {(!this.isEmpty(this.state.groups)) ? (<GroupList groups = {this.state.groups} selectGroup = {this.selectGroup}/>) :
+          (<p>YOURE NOT IN ANY GROUPS!</p>)}
+
 
         </Col>
 

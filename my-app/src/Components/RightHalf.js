@@ -18,7 +18,8 @@ class RightHalf extends Component {
       group: {admins: [],
               metadata: {description: "", name: "", priv: ""},
               users: {}},
-      events: null
+      events: null,
+      users: {}
     }
 
   }
@@ -36,7 +37,6 @@ class RightHalf extends Component {
 
 
   render() {
-    console.log(this.state)
     return (
       <Col span={20} className = "right_col full_height">
           <Header className="header">

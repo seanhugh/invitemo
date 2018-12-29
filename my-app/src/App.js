@@ -31,16 +31,14 @@ class App extends Component {
   async login(){
     let [user, token] = await MyFire.loginWindow();
     this.check_login();
-
-    // Add a user with name, email, and token
-    MyFire.addUser(user.displayName, user.email, user.uid);
   }
 
   async check_login(){
     let user = await MyFire.currentUser();
+    let userData = await MyFire.getUserData(user.uid);
     this.setState({
       user: user.uid,
-      userData: user
+      userData: userData
     })
   }
 
