@@ -32,22 +32,18 @@ class MyFire {
    this.dbRef = this.db.ref();
    // this.dbRef = this.db.ref().child('data');
 
-   this.callbackFunction = null;
-
    this.userDataId = this.userDataId.bind(this)
    this.groupMetadata = this.groupMetadata.bind(this)
 
    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
-  // Keep the state updated
+   this.callbackFunctionApp = null;
+
+ }
+
+  setCallBackFunctionApp(fn) {
+    this.callbackFunctionApp = fn;
   }
-
-  setCallBackFunction(fn) {
-    this.callbackFunction = fn;
-
-    //register this callback with firebase
-  }
-
 
 // LOGIN STUFF ALL GOES HERE ---------------------------------------------------
 
@@ -135,6 +131,17 @@ class MyFire {
       })
     }
 
+  // Function for creating a listener on the user's data
+  createUserListener(id){
+      this.db.ref('/user/' + id).on('value', snapshot => {
+        let user_data = snapshot.val();
+        if (user_data.groups == null){
+          user_data.groups = {}
+        }
+        this.callbackFunctionApp({userData:user_data});
+      });
+  }
+
 // GROUP ADDING FEATURE --------------------------------------------------------
 
   // Create a new group with the current user as the admin
@@ -143,14 +150,18 @@ class MyFire {
     if (description == null){
       description = ""
     }
+
     // Create a new grp
     var postData = {
       metadata: {name: name,
                  description: description,
                  priv: privpub},
-      admins: [userid],
-      users: [userid]
+      admins: {},
+      users: {}
     };
+
+    postData["admins"][userid] = 1;
+    postData["users"][userid] = 1;
 
     // Get a key for a new Post.
     var newPostKey = this.dbRef.child('groups').push().key;
@@ -161,10 +172,6 @@ class MyFire {
     updates['/user/' + userid + '/groups/' + newPostKey] = 1;
 
     this.dbRef.update(updates);
-  }
-
-  updateState(state){
-    this.callbackFunction(state);
   }
 
   pick_one(lst){
@@ -193,11 +200,11 @@ class MyFire {
       })
   }
 
-  async updateGroups(userData){
-    if(userData.groups){
+  async updateGroups(groupData){
+    if(groupData){
       // The user is a member of groups. Gather group data and send to user
 
-      let groupList = Object.keys(userData.groups)
+      let groupList = Object.keys(groupData)
 
       return Promise.all(
           groupList.map(this.groupMetadata)
@@ -210,7 +217,7 @@ class MyFire {
           for (i = 0; i < groupList.length; i++) {
             arr[groupList[i]] = allData[i]
           }
-          return {groups: arr}
+          return {group_data: arr}
       });
 
 
@@ -238,7 +245,7 @@ class MyFire {
 
   // Get the data for each user in a given group
   async groupUserData(group){
-    let userList = group.users
+    let userList = Object.keys(group.users)
 
     return Promise.all(
         userList.map(this.userDataId)

@@ -25,20 +25,34 @@ class Home extends Component {
 
     this.selectGroup = this.selectGroup.bind(this)
 
-    this.state = {
+    this.state=({
       active_group: null,
-      groups: {}
-    }
-
-    // Pass through the callback function to Firebase
-    MyFire.setCallBackFunction(this.updateState.bind(this));
+      group_data: {}
+    })
 
   }
 
-  async componentDidMount(){
-    // pass through userdata to firebase. Return all appropriate group data.
-    let data = await MyFire.updateGroups(this.props.data.userData);
-    this.setState(data);
+  componentDidMount(){
+    // Set the initial active group
+    let keys = Object.keys(this.props.data.userData.groups)
+
+    if (keys.length > 0){
+      this.setState({
+        active_group: keys[0]
+      });
+    }
+  }
+
+  async componentDidUpdate(prevProps){
+
+    if (prevProps.data.userData.groups !== this.props.data.userData.groups) {
+    // Update the state group data on New prop change
+    // Get group data for the given grouplist
+    let groupData = await MyFire.updateGroups(this.props.data.userData.groups);
+    // Add the downloaded metaData to the state
+    this.setState(groupData);
+
+    }
   }
 
   // Function That Updates the State on Input
@@ -71,13 +85,13 @@ class Home extends Component {
           </div>
 
 
-          {(!this.isEmpty(this.state.groups)) ? (<GroupList groups = {this.state.groups} selectGroup = {this.selectGroup}/>) :
+          {(!this.isEmpty(this.state.group_data)) ? (<GroupList groups = {this.state.group_data} selectGroup = {this.selectGroup}/>) :
           (<p>YOURE NOT IN ANY GROUPS!</p>)}
 
 
         </Col>
 
-        <RightHalf active_group = {this.state.active_group} />
+        <RightHalf active_group = {this.state.active_group} uid = {this.props.data.user}/>
       </Row>
 
       </div>
