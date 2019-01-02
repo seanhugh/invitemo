@@ -32,15 +32,26 @@ class Home extends Component {
 
   }
 
-  componentDidMount(){
+  async componentDidMount(){
+
     // Set the initial active group
     let keys = Object.keys(this.props.data.userData.groups)
 
-    if (keys.length > 0){
+    if(this.props.active_group){
+      this.setState({
+        active_group: this.props.active_group.active_group
+      });
+    } else if (keys.length > 0){
       this.setState({
         active_group: keys[0]
       });
     }
+
+    //update group stuff on initial load:
+    let groupData = await MyFire.updateGroups(this.props.data.userData.groups);
+    // Add the downloaded metaData to the state
+    this.setState(groupData);
+
   }
 
   async componentDidUpdate(prevProps){

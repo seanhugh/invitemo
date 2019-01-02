@@ -26,7 +26,7 @@ class GroupList extends Component {
             </Col>
             <Col span={16}>
               <h3>{groups[key].name}</h3>
-              <p>5 others RSVPd to the event <span>Lunch at Grafton Street</span></p>
+              <p>{key}</p>
             </Col>
             </div>
             )

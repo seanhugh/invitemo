@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MyFire from '../MyFire';
 import InfoButton from './InfoButton';
+import ShareButton from './ShareButton';
 
 // Import Ant Design Components
 import { Col, Layout, Button } from 'antd';
@@ -59,11 +60,14 @@ class RightHalf extends Component {
       <Col span={20} className = "right_col full_height">
           <Header className="header">
 
+
+          <InfoButton data = {this.state} group={this.props.active_group}/>
+          <ShareButton type = {1} group={this.props.active_group}/>
             { this.state.group.metadata.name ?
             <h3>{this.state.group.metadata.name}</h3> : <div />
             }
+
           </Header>
-        <InfoButton data = {this.state} />
         {this.state.isadmin ? <h1>You are an admin</h1> : <h1>You aren't admin </h1>}
 
       </Col>

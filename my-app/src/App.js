@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './Css/App.css';
 import MyFire from './MyFire';
-import Home from './Home';
-import Login from './Login';
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import JoinGroup from './Components/JoinGroup'
+import Default from './Components/Default';
 
 // Output the app
 
@@ -41,17 +41,18 @@ class App extends Component {
 
   async check_login(){
     let user = await MyFire.currentUser();
-    let userData = await MyFire.getUserData(user.uid);
-    if (userData.groups == null){
-      userData.groups = {}
+    if (user){
+      let userData = await MyFire.getUserData(user.uid);
+      if (userData.groups == null){
+        userData.groups = {}
+      }
+      this.setState({
+        user: user.uid,
+        userData: userData
+      });
+      // SET UP A LISTENER FOR CHANGES IN THE USER DATA (Relates to groups etc.)
+      MyFire.createUserListener(user.uid);
     }
-    this.setState({
-      user: user.uid,
-      userData: userData
-    });
-
-    // SET UP A LISTENER FOR CHANGES IN THE USER DATA (Relates to groups etc.)
-    MyFire.createUserListener(user.uid);
   }
 
   // set the logout options
@@ -67,12 +68,25 @@ class App extends Component {
     this.setState(newState);
   }
 
-  render() {
-    return (
-      <div className="App">
-      {this.state.user ? (<Home data={this.state} />) :
-        (<Login data={this.state}/>)}
+  SetUpGroup({match}) {
+  return (
+      <div>
+        <JoinGroup group={match.params.id} />
       </div>
+    );
+  }
+
+  render() {
+    let myUser = this.state.user;
+    let myState = this.state;
+    return (
+    <Router>
+      <div>
+
+        <Route exact path="/" render={props => (<Default  props={props} user = {myUser} data={myState}/>)}     />
+        <Route path="/join/:id" component={this.SetUpGroup} />
+      </div>
+    </Router>
     );
   }
 }

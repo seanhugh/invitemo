@@ -92,6 +92,7 @@ class MyFire {
 
   // Given a user ID, retrieve his data from the db
   async getUserData(id){
+    console.log("THIS IS BEING RUN?")
     return new Promise((resolve, reject) => {
 
       this.db.ref('/user/' + id).once('value').then(function(snapshot) {
@@ -293,7 +294,44 @@ class MyFire {
     });
   }
 
+// CHECK IF A GROUP IS A REAL GROUP -------------------------------------------
+
+  async isRealGroup(group){
+
+    return new Promise((resolve, reject) => {
+
+        let myRef = this.dbRef.child('groups').child(group);
+        myRef.on('value', function(snapshot) {
+           if (!(snapshot.val() == null)){
+              resolve(true)
+              return;
+           }
+           else{
+              resolve(false);
+              return;
+            }
+        });
+
+    });
+  }
+
+
+  // Add a user to a group
+  addUserToGroup(user, group){
+     // Write the new data simultaneously to the user and to the group
+    var updates = {};
+    updates['/groups/' + group + '/users/' + user] = 1;
+    updates['/user/' + user + '/groups/' + group] = 1;
+
+    this.dbRef.update(updates);
+
+    console.log("User succesfully added to group")
+  }
+
 }
+
+
+
 
 // Export new so that it does not create multiple instances
 export default new MyFire();

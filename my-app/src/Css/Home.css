@@ -28,11 +28,17 @@
     cursor: pointer;
 }
 
+/* Putting the Icons on the right side of the header */
+
 .settingsIcon3 {
-    position: absolute!important;
-    right: 36px;
-    top: 16px!important;
+    margin-left: 20px;
+    margin-top: 15px;
+    float: right;
     cursor: pointer;
+}
+
+.ant-layout-header {
+    padding: 0 20px!important;
 }
 
 .logo {
@@ -138,4 +144,17 @@ html, body
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0,0,0,.2);
+}
+
+/* Sharable Link Stuff */
+
+button.clipboard {
+    background: none;
+    -webkit-appearance: caret!important;
+    width: 100%;
+    cursor: pointer;
+}
+
+.copySearch input {
+    pointer-events: none;
 }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import UserSettings from './UserSettings';
 
 // Import Ant Design Components
 import {
-  Drawer, List, Avatar, Divider, Col, Row, Button
+  Drawer, List, Avatar, Divider, Col, Row, Button, Icon
 } from 'antd';
 
 class UserList extends Component {
@@ -36,6 +37,7 @@ class UserList extends Component {
             title={<a>{users[key].name}</a>}
             description={users[key].email}
           />
+          <UserSettings />
         </List.Item>
         )
       });

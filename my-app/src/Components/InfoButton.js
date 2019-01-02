@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MyFire from '../MyFire';
 import UserList from './UserList';
+import ShareButton from './ShareButton';
 
 import {
   Drawer, List, Avatar, Divider, Col, Row, Button
@@ -92,7 +93,16 @@ class InfoButton extends Component {
             </Col>
           </Row>
           <Divider />
-          <p style={pStyle}>Members</p>
+
+          <Row>
+            <Col span={12}>
+              <p style={pStyle}>Members</p>
+            </Col>
+            <Col span={12}>
+            <ShareButton type = {2} group={this.props.group}/>
+            </Col>
+          </Row>
+
           <Row>
             <UserList users = {this.props.data.users}/>
           </Row>
