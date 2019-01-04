@@ -40,8 +40,8 @@ class ShareButton extends Component {
     let link = "http://localhost:3000/join/" + this.props.group;
     return (
       <div>
-        {(this.props.type == 1) ? <Button type="primary" className="settingsIcon3" onClick={this.showDrawer}>Invite Users</Button> :
-        <Button type="primary" className="settingsIcon3" onClick={this.showDrawer} style ={{"margin":0}}>Add Users</Button>}
+        {(this.props.type == 1) ? <Button type="primary" icon="user-add" className="settingsIcon3" onClick={this.showDrawer}>Invite Users</Button> :
+        <Button type="primary" className="settingsIcon3" icon="user-add" onClick={this.showDrawer} style ={{"margin":0}}>Invite Users</Button>}
         <Modal
           title="Share Group"
           visible={this.state.visible}

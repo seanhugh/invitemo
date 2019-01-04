@@ -1,0 +1,8 @@
+.space{
+    display: inline-block;
+    width: 20px;
+}
+
+.adminEdit i {
+    margin-right: 6px;
+}

@@ -38,11 +38,16 @@ class MyFire {
    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
    this.callbackFunctionApp = null;
+   this.callbackFunctionRightHalf = null;
 
  }
 
   setCallBackFunctionApp(fn) {
     this.callbackFunctionApp = fn;
+  }
+
+  setCallBackFunctionRightHalf(fn) {
+    this.callbackFunctionRightHalf = fn;
   }
 
 // LOGIN STUFF ALL GOES HERE ---------------------------------------------------
@@ -92,7 +97,6 @@ class MyFire {
 
   // Given a user ID, retrieve his data from the db
   async getUserData(id){
-    console.log("THIS IS BEING RUN?")
     return new Promise((resolve, reject) => {
 
       this.db.ref('/user/' + id).once('value').then(function(snapshot) {
@@ -161,8 +165,8 @@ class MyFire {
       users: {}
     };
 
-    postData["admins"][userid] = 1;
-    postData["users"][userid] = 1;
+    // The user is the creator of the group, so we add a value of 3 as his user value
+    postData["users"][userid] = 3;
 
     // Get a key for a new Post.
     var newPostKey = this.dbRef.child('groups').push().key;
@@ -294,6 +298,15 @@ class MyFire {
     });
   }
 
+  // Set a listener on this specific group
+  createGroupListener(id){
+      this.db.ref('/groups/' + id).on('value', snapshot => {
+        let group_data = snapshot.val();
+        this.callbackFunctionRightHalf({group:group_data});
+      });
+  }
+
+
 // CHECK IF A GROUP IS A REAL GROUP -------------------------------------------
 
   async isRealGroup(group){
@@ -326,6 +339,17 @@ class MyFire {
     this.dbRef.update(updates);
 
     console.log("User succesfully added to group")
+  }
+
+// CONTROLS FOR UPDATING A USERS STATUS (Admin / non-admin) --------------------
+
+  updateUserStatus(group, uid, type){
+    var updates = {};
+    updates['/groups/' + group + '/users/' + uid] = type;
+    updates['/user/' + uid + '/groups/' + group] = type;
+
+    this.dbRef.update(updates);
+    console.log("THE DATABASE HAS BEEN UPDATED!")
   }
 
 }

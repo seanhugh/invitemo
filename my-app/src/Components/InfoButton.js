@@ -99,12 +99,12 @@ class InfoButton extends Component {
               <p style={pStyle}>Members</p>
             </Col>
             <Col span={12}>
-            <ShareButton type = {2} group={this.props.group}/>
+            {(this.props.isadmin) ? <ShareButton type = {2} group={this.props.group}/> : <div/>}
             </Col>
           </Row>
 
           <Row>
-            <UserList users = {this.props.data.users}/>
+            <UserList users = {this.props.data.users} linked_users = {this.props.data.group.users} group = {this.props.group} isadmin={this.props.isadmin}/>
           </Row>
           <Divider />
         </Drawer>

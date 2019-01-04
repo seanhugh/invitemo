@@ -20,8 +20,10 @@ class UserList extends Component {
    createUserList(){
 
 
-
+      let linked_users = this.props.linked_users
       let users = this.props.users
+      let group = this.props.group
+      let isadmin = this.props.isadmin;
 
       // This is what allows for a cool link on the right side
       // <List.Item key={key} actions={[<a >View Profile</a>]}>
@@ -37,7 +39,7 @@ class UserList extends Component {
             title={<a>{users[key].name}</a>}
             description={users[key].email}
           />
-          <UserSettings />
+          {(isadmin) ? <UserSettings uid = {key} type = {linked_users[key]} group={group}/>  : <div/>}
         </List.Item>
         )
       });

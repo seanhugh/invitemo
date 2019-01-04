@@ -3,7 +3,9 @@
 }
 
 .left_col {
-  background-color: #fafafa;
+  background-color: white;
+  outline: 1px #d1d1d1 solid;
+    background: white;
 }
 
 .right_col .header {

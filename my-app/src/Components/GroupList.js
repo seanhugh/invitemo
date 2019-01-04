@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 // Import Ant Design Components
-import { Col } from 'antd';
+import { List, Avatar, Col } from 'antd';
+import '../Css/grouplist.css'
 
 class GroupList extends Component {
 
@@ -20,15 +21,16 @@ class GroupList extends Component {
         let selectG = this.props.selectGroup;
         let elements = Object.keys(groups).map(function(key){
           return(
-            <div className = "groupEl" key={key} onClick={selectG.bind(null, key)}>
-            <Col span={6}>
-              <div className = "highlight_bar" />
-            </Col>
-            <Col span={16}>
-              <h3>{groups[key].name}</h3>
-              <p>{key}</p>
-            </Col>
-            </div>
+            <List.Item key={key} onClick={selectG.bind(null, key)}>
+
+            <List.Item.Meta
+              avatar={
+                <Avatar src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
+              }
+              title={<a>{groups[key].name}</a>}
+              description={key}
+            />
+          </List.Item>
             )
         });
 
@@ -40,7 +42,9 @@ class GroupList extends Component {
   render() {
     return (
       <div className = "allgroups">
+        <List>
         {this.createGroupList()}
+        </List>
       </div>
     );
   }

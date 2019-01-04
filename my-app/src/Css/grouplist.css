@@ -1,0 +1,11 @@
+.allgroups .ant-list-item {
+    cursor: pointer;
+}
+
+.allgroups .ant-list-item .ant-list-item-meta {
+    margin-left: 20px;
+}
+
+.allgroups .ant-list-item:hover {
+    background: rgba(0, 0, 0, .10);
+}

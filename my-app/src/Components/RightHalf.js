@@ -17,12 +17,13 @@ class RightHalf extends Component {
 
     this.state = {
       isadmin: false,
-      group: {admins: [],
-              metadata: {description: "", name: "", priv: ""},
+      group: {metadata: {description: "", name: "", priv: ""},
               users: {}},
       events: null,
       users: {}
     }
+
+    MyFire.setCallBackFunctionRightHalf(this.updateState.bind(this));
 
   }
 
@@ -39,7 +40,7 @@ class RightHalf extends Component {
       this.setState(userEventData)
 
       // Update whether or not the current user is an admin
-      if (this.props.uid in data.group.admins){
+      if (data.group.users[this.props.uid] == 2 || data.group.users[this.props.uid] == 3){
         this.setState({
           isadmin: true
         });
@@ -49,10 +50,18 @@ class RightHalf extends Component {
         });
       }
 
+      // Create a listener for the group so that it updates as values change
+      MyFire.createGroupListener(this.props.active_group);
+
       // TO BE DONE: Download the data for all events associated with the group
 
      }
    }
+
+
+  updateState(newState){
+    this.setState(newState)
+  }
 
 
   render() {
@@ -61,8 +70,8 @@ class RightHalf extends Component {
           <Header className="header">
 
 
-          <InfoButton data = {this.state} group={this.props.active_group}/>
-          <ShareButton type = {1} group={this.props.active_group}/>
+          <InfoButton data = {this.state} group={this.props.active_group} isadmin={this.state.isadmin}/>
+          {(this.state.isadmin) ? <ShareButton type = {1} group={this.props.active_group}/> : <div/>}
             { this.state.group.metadata.name ?
             <h3>{this.state.group.metadata.name}</h3> : <div />
             }
