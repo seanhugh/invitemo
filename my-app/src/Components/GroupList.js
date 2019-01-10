@@ -24,11 +24,7 @@ class GroupList extends Component {
             <List.Item key={key} onClick={selectG.bind(null, key)}>
 
             <List.Item.Meta
-              avatar={
-                <Avatar src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
-              }
               title={<a>{groups[key].name}</a>}
-              description={key}
             />
           </List.Item>
             )
@@ -41,7 +37,7 @@ class GroupList extends Component {
 
   render() {
     return (
-      <div className = "allgroups">
+      <div className = "allgroups left">
         <List>
         {this.createGroupList()}
         </List>

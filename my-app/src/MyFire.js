@@ -174,7 +174,7 @@ class MyFire {
     // Write the new post's data simultaneously in the posts list and the user's post list.
     var updates = {};
     updates['/groups/' + newPostKey] = postData;
-    updates['/user/' + userid + '/groups/' + newPostKey] = 1;
+    updates['/user/' + userid + '/groups/' + newPostKey] = 3;
 
     this.dbRef.update(updates);
   }
@@ -352,7 +352,44 @@ class MyFire {
     console.log("THE DATABASE HAS BEEN UPDATED!")
   }
 
+// Logic For Creating a New Event
+
+  createEvent(state, uid, guid){
+
+    // Required elements are name, date/time, attendance
+// Create a new grp
+
+THE NAME PART IS MESSING UP SOMEHOW. HAVE TO GET BALUE PROLLY
+
+    var postData = {
+      name: state.name,
+      time: { date: state.date,
+             hours: state.hours,
+             minutes: state.minutes},
+      limited: state.limited,
+      group: guid,
+      people:{}
+    };
+
+    console.log("postData")
+    console.log(postData)
+
+    postData["people"][uid] = 3
+
+    // Get a key for a new Post.
+    var newPostKey = this.dbRef.child('events').push().key;
+
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/events/' + newPostKey] = postData;
+    // updates['/user/' + uid + '/events/' + newPostKey] = 3;
+    // updates['/groups/' + guid + '/events/' + newPostKey] = 1;
+
+    this.dbRef.update(updates);
+  }
+
 }
+
 
 
 

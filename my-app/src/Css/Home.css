@@ -160,3 +160,23 @@ button.clipboard {
 .copySearch input {
     pointer-events: none;
 }
+
+span.ant-time-picker {
+    margin-left: 20px;
+}
+
+
+.DateInput_input {
+    font-size: 14px!important;
+    line-height: 1.5!important;
+    color: rgba(0, 0, 0, 0.65)!important;
+    border-radius: 4px!important;
+    padding: 4px 11px!important;
+    height: 32px!important;
+}
+
+.DateInput_input__focused {
+    border-color: #40a9ff!important;
+    border-right-width: 1px !important;
+    border-bottom: 0px!important;
+}

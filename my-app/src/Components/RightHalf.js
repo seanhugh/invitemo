@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MyFire from '../MyFire';
 import InfoButton from './InfoButton';
 import ShareButton from './ShareButton';
+import CreateEvent from './CreateEvent';
 
 // Import Ant Design Components
 import { Col, Layout, Button } from 'antd';
@@ -77,7 +78,8 @@ class RightHalf extends Component {
             }
 
           </Header>
-        {this.state.isadmin ? <h1>You are an admin</h1> : <h1>You aren't admin </h1>}
+
+        {this.state.isadmin ? <CreateEvent uid = {this.props.uid} guid ={this.props.active_group}/> : <div />}
 
       </Col>
     );
