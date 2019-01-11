@@ -27,14 +27,16 @@ class CreateEvent extends Component {
     this.nameChange=this.nameChange.bind(this);
     this.RSVPchanged=this.RSVPchanged.bind(this);
     this.LimitedRSVP=this.LimitedRSVP.bind(this);
+    this.locChange=this.locChange.bind(this);
 
     this.state = {
       visible: false,
       name: null,
       date: null,
-      hours: null,
-      minutes: null,
-      limited: false
+      hours: 0,
+      minutes: 0,
+      limited: false,
+      rsvpNum: 5,
     };
 
   }
@@ -50,20 +52,19 @@ class CreateEvent extends Component {
       visible:false,
       name: null,
       date: null,
-      hours: null,
-      minutes: null,
+      hours: 0,
+      minutes: 0,
       location: null,
-      rsvpNum: null,
+      rsvpNum: 5,
       limited: false
     });
   }
 
-
  handleCreate(){
       // this.createEvent(values.title, values.description, values.modifier);
-
       // Check to see if the required values are filled out
-      if(this.state.name && this.state.date && this.state.hours && this.state.minutes){
+
+      if(this.state.name && this.state.date && (this.state.hours || (this.state.hours == 0)) && (this.state.minutes || (this.state.minutes == 0)) ){
         this.createEvent()
         this.setState({
           visible:false
@@ -78,18 +79,16 @@ class CreateEvent extends Component {
   }
 
   timeChange(value){
-    console.log(value)
     this.setState({hours: value._d.getHours(),
                   minutes: value._d.getMinutes()});
   }
 
-  nameChange(value){
-    console.log(this.props)
-    this.setState({name:value});
+  nameChange(e){
+    this.setState({name:e.target.value });
   }
 
-  locChange(value){
-    this.setState({location:value});
+  locChange(e){
+    this.setState({location:e.target.value});
   }
 
   RSVPchanged(value){

@@ -359,20 +359,26 @@ class MyFire {
     // Required elements are name, date/time, attendance
 // Create a new grp
 
-THE NAME PART IS MESSING UP SOMEHOW. HAVE TO GET BALUE PROLLY
+// THE NAME PART IS MESSING UP SOMEHOW. HAVE TO GET BALUE PROLLY
+
+    let dateArray = state.date.toArray()
+
 
     var postData = {
       name: state.name,
-      time: { date: state.date,
+      time: { year: dateArray[0],
+              month: dateArray[1],
+              day: dateArray[2],
              hours: state.hours,
-             minutes: state.minutes},
+             minutes: state.minutes },
       limited: state.limited,
       group: guid,
       people:{}
     };
 
-    console.log("postData")
-    console.log(postData)
+    if(state.limited == true){
+      postData["rsvpNum"] = state.rsvpNum
+    }
 
     postData["people"][uid] = 3
 
@@ -382,10 +388,9 @@ THE NAME PART IS MESSING UP SOMEHOW. HAVE TO GET BALUE PROLLY
     // Write the new post's data simultaneously in the posts list and the user's post list.
     var updates = {};
     updates['/events/' + newPostKey] = postData;
-    // updates['/user/' + uid + '/events/' + newPostKey] = 3;
-    // updates['/groups/' + guid + '/events/' + newPostKey] = 1;
-
-    this.dbRef.update(updates);
+    updates['/user/' + uid + '/events/' + newPostKey] = 3;
+    updates['/groups/' + guid + '/events/' + newPostKey] = 1;
+    // this.dbRef.update(updates);
   }
 
 }
