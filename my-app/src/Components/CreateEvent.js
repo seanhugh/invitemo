@@ -109,7 +109,7 @@ class CreateEvent extends Component {
     return (
       <div>
 
-        <Button type = "primary"onClick={this.showModal}> Create Event</Button>
+        <Button className="eventButton" type = "primary"onClick={this.showModal}> Create Event</Button>
 
         <Modal
           title="Basic Modal"

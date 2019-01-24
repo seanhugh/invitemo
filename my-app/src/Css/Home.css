@@ -180,3 +180,35 @@ span.ant-time-picker {
     border-right-width: 1px !important;
     border-bottom: 0px!important;
 }
+
+.header.ant-layout-header {
+    width: 100%;
+}
+
+.ant-col-20.right_col.full_height {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.eventArea {
+    height: 60px;
+    border-top: 1px #d1d1d1 solid;
+}
+
+.eventButton {
+    margin-top: 15px;
+    margin-right: 15px;
+    float: right;
+}
+
+.eventContainer {
+    flex: 2 1;
+    overflow: auto;
+}
+
+.eventRestriction{
+    width: 900px;
+    margin-left: 50px;
+
+}

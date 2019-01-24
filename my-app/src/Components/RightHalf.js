@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MyFire from '../MyFire';
 import InfoButton from './InfoButton';
+import EventDisplay from './EventDisplay';
 import ShareButton from './ShareButton';
 import CreateEvent from './CreateEvent';
 
@@ -68,18 +69,29 @@ class RightHalf extends Component {
   render() {
     return (
       <Col span={20} className = "right_col full_height">
+
+
           <Header className="header">
 
 
-          <InfoButton data = {this.state} group={this.props.active_group} isadmin={this.state.isadmin}/>
-          {(this.state.isadmin) ? <ShareButton type = {1} group={this.props.active_group}/> : <div/>}
-            { this.state.group.metadata.name ?
-            <h3>{this.state.group.metadata.name}</h3> : <div />
-            }
+          <InfoButton data = {this.state} group={this.props.active_group} isadmin={this.state.isadmin} />
+
+            {(this.state.isadmin) ? <ShareButton type = {1} group={this.props.active_group}/> : <div/>}
+              { this.state.group.metadata.name ?
+              <h3>{this.state.group.metadata.name}</h3> : <div />
+              }
 
           </Header>
+          <div className = "eventContainer">
+            <div className= "eventRestriction">
+              <EventDisplay />
+            </div>
+          </div>
 
-        {this.state.isadmin ? <CreateEvent uid = {this.props.uid} guid ={this.props.active_group}/> : <div />}
+        <div className = "eventArea">
+          {this.state.isadmin ? (<div className = "eventCreateBar">
+            <CreateEvent uid = {this.props.uid} guid ={this.props.active_group}/></div>) : <div />}
+        </div>
 
       </Col>
     );
