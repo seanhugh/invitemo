@@ -33,6 +33,7 @@ class MyFire {
    // this.dbRef = this.db.ref().child('data');
 
    this.userDataId = this.userDataId.bind(this)
+   this.eventDataId = this.eventDataId.bind(this)
    this.groupMetadata = this.groupMetadata.bind(this)
 
    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -392,6 +393,44 @@ class MyFire {
     updates['/groups/' + guid + '/events/' + newPostKey] = 1;
     // this.dbRef.update(updates);
   }
+
+// DOWNLOAD EVENT DATA FOR A GIVEN GROUP ---------------------------------------
+
+  eventDataId(id){
+
+      return new Promise((resolve, reject) => {
+
+      this.db.ref('/events/' + id).once('value').then(function(snapshot) {
+           if (snapshot) {
+            resolve(snapshot.val())
+            return;
+          } else {
+          }
+        });
+
+      })
+  }
+
+  // Get the data for each user in a given group
+  async groupEventData(group){
+    let eventList = Object.keys(group.events)
+
+    return Promise.all(
+        eventList.map(this.eventDataId)
+      ).then(allData => {
+      // Put the data into an array and return it
+
+      // Match the data back with its key and push to the object
+      var i;
+      let arr = {};
+      for (i = 0; i < eventList.length; i++) {
+        arr[eventList[i]] = allData[i]
+      }
+      return {events: arr}
+    });
+  }
+
+
 
 }
 

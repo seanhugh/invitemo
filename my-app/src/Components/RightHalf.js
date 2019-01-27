@@ -41,6 +41,10 @@ class RightHalf extends Component {
       let userEventData = await MyFire.groupUserData(this.state.group);
       this.setState(userEventData)
 
+      // Loop through all events in that group and download their metadata
+      let groupEventData = await MyFire.groupEventData(this.state.group);
+      this.setState(groupEventData)
+
       // Update whether or not the current user is an admin
       if (data.group.users[this.props.uid] == 2 || data.group.users[this.props.uid] == 3){
         this.setState({
@@ -67,6 +71,7 @@ class RightHalf extends Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <Col span={20} className = "right_col full_height">
 
@@ -84,7 +89,7 @@ class RightHalf extends Component {
           </Header>
           <div className = "eventContainer">
             <div className= "eventRestriction">
-              <EventDisplay />
+              <EventDisplay events={this.state.events}/>
             </div>
           </div>
 

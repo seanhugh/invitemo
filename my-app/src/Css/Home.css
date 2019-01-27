@@ -212,3 +212,10 @@ span.ant-time-picker {
     margin-left: 50px;
 
 }
+
+.ant-list-item.Event {
+    border-radius: 5px;
+    padding: 25px;
+    background: #E1F5FE;
+    margin-top: 10px;
+}
