@@ -64,9 +64,19 @@ class RightHalf extends Component {
      }
    }
 
+   // Run on callback from group data
+  async updateState(newState){
 
-  updateState(newState){
-    this.setState(newState)
+    // Update state with new date
+    this.setState(newState);
+
+    // Loop through all events in that group and download their metadata
+    let groupEventData = await MyFire.groupEventData(newState.group);
+    this.setState(groupEventData)
+
+    // Loop through all users in that group and download their metadata
+    let userEventData = await MyFire.groupUserData(newState.group);
+    this.setState(userEventData)
   }
 
 
@@ -88,7 +98,7 @@ class RightHalf extends Component {
           </Header>
           <div className = "eventContainer">
             <div className= "eventRestriction">
-              <EventDisplay events={this.state.events}/>
+              <EventDisplay events={this.state.events} uid = {this.props.uid}/>
             </div>
           </div>
 

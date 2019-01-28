@@ -224,3 +224,29 @@ span.ant-time-picker {
 .ant-list-split .ant-list-item.Event:last-child {
     border-bottom: 1px solid #e8e8e8;;
 }
+
+.howMany{
+    float:right;
+}
+
+.ant-list-item-extra {
+    position: absolute;
+    right: 25px;
+}
+
+.ant-list-item.Event.Green {
+    background: #399E5A;
+}
+
+.ant-list-item.Event {
+    -webkit-transition: background-color 50ms ease-in-out;
+    -ms-transition: background-color 50ms ease-in-out;
+    transition: background-color 50ms ease-in-out;
+    background: white;
+}
+
+.rsvpButton:focus, .rsvpButton:active {
+    color: white!important;
+    background-color: #fff;
+    border-color: white!important;
+}

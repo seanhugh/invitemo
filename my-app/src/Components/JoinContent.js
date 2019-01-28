@@ -74,9 +74,8 @@ class JoinContent extends Component {
         <div className = "flex-container">
         <Row className = "JoinContent">
           <div className = "flex-item">
-            <h3>Click bellow to join the events page for:</h3>
-            <h1>{this.props.group}</h1>
-            <Button type = "primary" onClick = {this.joinTheGroup}>Join Now!</Button>
+            <h2>Sign up for <em style={{"font-size":"30px", "font-style": "normal"}}>{this.props.group}</em> events now!!</h2>
+            <Button type = "primary" onClick = {this.joinTheGroup}>See Events!</Button>
           </div>
         </Row>
         </div>

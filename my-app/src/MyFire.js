@@ -40,6 +40,7 @@ class MyFire {
 
    this.callbackFunctionApp = null;
    this.callbackFunctionRightHalf = null;
+   this.CBEventDisplay = null;
 
  }
 
@@ -49,6 +50,10 @@ class MyFire {
 
   setCallBackFunctionRightHalf(fn) {
     this.callbackFunctionRightHalf = fn;
+  }
+
+  setCBEventDisplay(fn) {
+    this.CBEventDisplay = fn;
   }
 
 // LOGIN STUFF ALL GOES HERE ---------------------------------------------------
@@ -145,6 +150,14 @@ class MyFire {
           user_data.groups = {}
         }
         this.callbackFunctionApp({userData:user_data});
+      });
+  }
+
+  // Function for creating a listener on the user's event data
+  createUserEventListener(id){
+      this.db.ref('/user/' + id + '/events/').on('value', snapshot => {
+        let event_data = snapshot.val();
+        this.CBEventDisplay({userEvent:event_data});
       });
   }
 
@@ -350,7 +363,6 @@ class MyFire {
     updates['/user/' + uid + '/groups/' + group] = type;
 
     this.dbRef.update(updates);
-    console.log("THE DATABASE HAS BEEN UPDATED!")
   }
 
 // Logic For Creating a New Event
@@ -359,8 +371,6 @@ class MyFire {
 
     // Required elements are name, date/time, attendance
 // Create a new grp
-
-// THE NAME PART IS MESSING UP SOMEHOW. HAVE TO GET BALUE PROLLY
 
     let dateArray = state.date.toArray()
 
@@ -391,7 +401,7 @@ class MyFire {
     updates['/events/' + newPostKey] = postData;
     updates['/user/' + uid + '/events/' + newPostKey] = 3;
     updates['/groups/' + guid + '/events/' + newPostKey] = 1;
-    // this.dbRef.update(updates);
+    this.dbRef.update(updates);
   }
 
 // DOWNLOAD EVENT DATA FOR A GIVEN GROUP ---------------------------------------
@@ -432,6 +442,26 @@ class MyFire {
       }
       return {events: arr}
     });
+  }
+
+// RSVP a user to an event
+  rsvpUser(uid, eventID){
+    // Add event to the user section and to the event section
+    var updates = {};
+    updates['/events/' + eventID + '/people/' + uid] = 1;
+    updates['/user/' + uid + '/events/' + eventID] = 1;
+
+    this.dbRef.update(updates);
+  }
+
+// unRSVP a user to an event
+  unrsvpUser(uid, eventID){
+    // Add event to the user section and to the event section
+    var updates = {};
+    updates['/events/' + eventID + '/people/' + uid] = null;
+    updates['/user/' + uid + '/events/' + eventID] = null;
+
+    this.dbRef.update(updates);
   }
 
 
