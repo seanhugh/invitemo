@@ -31,6 +31,15 @@ class EventDisplay extends Component {
 
     let events = this.props.events
     let elements = Object.keys(events).map(function(key){
+
+        // Create the time
+        let mins = events[key].time.minutes.toString()
+        let minutes = (((mins.length) == 1) ? ("0" + mins) : mins)
+        let hr = events[key].time.hours
+        let hours = (hr > 12) ? (hr-12) : hr
+        let pmam = (hr > 12) ? "pm" : "am"
+        let time = events[key].time.hours + ":" + minutes + pmam
+
         return(
           <List.Item
               className = "Event"
@@ -40,9 +49,9 @@ class EventDisplay extends Component {
             >
               <List.Item.Meta
                 avatar={<Avatar src={"sadsad.png"} />}
-                title={<a href={"google.com"}>{events[key].name}</a>}
-                description={events[key].name}
-              />
+                title={<a>{events[key].name}</a>}/>
+              <p>time: <em className = "time">{time}</em></p>
+              {(events[key].location) ? (<p>location: <em>{events[key].location}</em></p>) : <div />}
           </List.Item>
         )});
 

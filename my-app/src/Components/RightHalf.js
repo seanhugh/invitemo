@@ -71,7 +71,6 @@ class RightHalf extends Component {
 
 
   render() {
-    console.log(this.state)
     return (
       <Col span={20} className = "right_col full_height">
 

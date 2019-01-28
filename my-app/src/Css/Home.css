@@ -216,6 +216,11 @@ span.ant-time-picker {
 .ant-list-item.Event {
     border-radius: 5px;
     padding: 25px;
-    background: #E1F5FE;
     margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e8e8e8;
+}
+
+.ant-list-split .ant-list-item.Event:last-child {
+    border-bottom: 1px solid #e8e8e8;;
 }

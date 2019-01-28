@@ -413,6 +413,10 @@ class MyFire {
 
   // Get the data for each user in a given group
   async groupEventData(group){
+    if(!group.events){
+      return {events: {}}
+    }
+
     let eventList = Object.keys(group.events)
 
     return Promise.all(
