@@ -95,15 +95,14 @@ class MyFire {
     // Write the new post's data simultaneously in the posts list and the user's post list.
     var updates = {};
 
-    this.dbRef.child('user').once('value', function(snapshot) {
-      console.log("HERE")
-      console.log(snapshot)
-      if (snapshot.hasChild(uid)) {
+    let dbRef = this.dbRef;
 
+    this.dbRef.child('user').once('value', function(snapshot) {
+      if (snapshot.hasChild(uid)) {
       } else{
 
           updates['/user/' + uid] = postData;
-          this.dbRef.update(updates);
+          dbRef.update(updates);
 
       }
     });
@@ -472,6 +471,14 @@ class MyFire {
     this.dbRef.update(updates);
   }
 
+// GET THE GROUP NAME WHEN A USER LOGS IN
+  getGroupName(groupID, callback){
+      this.db.ref('/groups/' + groupID  + '/metadata/name').once('value').then(function(snapshot) {
+        callback(snapshot.val());
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+  }
 
 
 }

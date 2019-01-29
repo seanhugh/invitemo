@@ -38,8 +38,7 @@ class ShareButton extends Component {
 
   render() {
     // Add group ID and a link to share the group
-    console.log(this.props)
-    let link = "http://localhost:3000/join/" + this.props.group;
+    let link = window.location.href + "join/" + this.props.group;
     return (
       <div>
         {(this.props.type == 1) ? <Button type="primary" icon="user-add" className="settingsIcon3" onClick={this.showDrawer}>Invite Users</Button> :

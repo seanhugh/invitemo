@@ -74,7 +74,7 @@
 }
 
 
-.ant-btn-primary {
+.settingsIcon2 {
     color: #fff;
     background-color: #d8842a;
     border-color: #d8842a;
@@ -82,12 +82,12 @@
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
 }
 
-.ant-btn-primary.settingsIcon2, .ant-btn-primary.settingsIcon2:active,
-.ant-btn-primary.settingsIcon2:focus {
+.settingsIcon2, .settingsIcon2:active,
+.settingsIcon2:focus {
     background-color: #d8842a;
     border-color: #d8842a;
 }
-.ant-btn-primary.settingsIcon2:hover {
+.settingsIcon2:hover {
     background-color: #f2923b;
     border-color: #f2923b;
 }

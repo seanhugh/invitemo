@@ -89,22 +89,22 @@
 }
 
 
-.ant-btn-primary {
-    color: #fff;
-    background-color: #d8842a;
-    border-color: #d8842a;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+.settingsIcon2 {
+    color: #fff!important;
+    background-color: #d8842a!important;
+    border-color: #d8842a!important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12)!important;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045)!important;
 }
 
-.ant-btn-primary.settingsIcon2, .ant-btn-primary.settingsIcon2:active,
-.ant-btn-primary.settingsIcon2:focus {
-    background-color: #d8842a;
-    border-color: #d8842a;
+.settingsIcon2, .settingsIcon2:active,
+.settingsIcon2:focus {
+    background-color: #d8842a!important;
+    border-color: #d8842a!important;
 }
-.ant-btn-primary.settingsIcon2:hover {
-    background-color: #f2923b;
-    border-color: #f2923b;
+.settingsIcon2:hover {
+    background-color: #f2923b!important;
+    border-color: #f2923b!important;
 }
 
 .collection-create-form_last-form-item {
