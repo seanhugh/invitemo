@@ -37,6 +37,8 @@ class ShareButton extends Component {
   }
 
   render() {
+    // Add group ID and a link to share the group
+    console.log(this.props)
     let link = "http://localhost:3000/join/" + this.props.group;
     return (
       <div>

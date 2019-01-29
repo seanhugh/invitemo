@@ -75,7 +75,6 @@ class EventDisplay extends Component {
   }
 
   render(){
-    console.log(this.state)
     return(
       <List itemLayout="vertical" size="large">
         {(this.props.events) ? this.generateList() : <div />}

@@ -29,6 +29,15 @@ class JoinContent extends Component {
         user:user.uid
       });
     }
+
+    // CURRENTLY WORKING RIGHT HERE
+    // Get the name of the event
+    // let name = await MyFire.getGroupName(this.props.group);
+
+    // this.setState({
+    //   group:name
+    // });
+
   }
 
   async joinTheGroup(){
@@ -74,7 +83,7 @@ class JoinContent extends Component {
         <div className = "flex-container">
         <Row className = "JoinContent">
           <div className = "flex-item">
-            <h2>Sign up for <em style={{"font-size":"30px", "font-style": "normal"}}>{this.props.group}</em> events now!!</h2>
+            <h2>Sign up for <em style={{"fontSize":"30px", "fontStyle": "normal"}}>{this.props.group}</em> events now!!</h2>
             <Button type = "primary" onClick = {this.joinTheGroup}>See Events!</Button>
           </div>
         </Row>

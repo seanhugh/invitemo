@@ -81,6 +81,9 @@ class Home extends Component {
     return (Object.keys(obj).length === 0);
   }
 
+          // <div className = "mySearch">
+          //   <Search placeholder="Search for new groups to join!" />
+          // </div>
   render() {
     return (
       <div>
@@ -91,13 +94,10 @@ class Home extends Component {
             <CreateGroupForm uid={this.props.data.user} />
             <div className="logo" />
           </Header>
-          <div className = "mySearch">
-            <Search placeholder="Search for new groups to join!" />
-          </div>
 
 
           {(!this.isEmpty(this.state.group_data)) ? (<GroupList groups = {this.state.group_data} selectGroup = {this.selectGroup}/>) :
-          (<p>YOURE NOT IN ANY GROUPS!</p>)}
+          (<p>You're not in any groups yet</p>)}
 
 
         </Col>
