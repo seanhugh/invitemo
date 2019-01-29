@@ -50,9 +50,9 @@ class EventDisplay extends Component {
         let mins = events[key].time.minutes.toString()
         let minutes = (((mins.length) == 1) ? ("0" + mins) : mins)
         let hr = events[key].time.hours
-        let hours = (hr > 12) ? (hr-12) : hr
+        let hours = (hr > 12) ? (hr - 12) : hr
         let pmam = (hr > 12) ? "pm" : "am"
-        let time = events[key].time.hours + ":" + minutes + pmam
+        let time = hours + ":" + minutes + pmam
 
         return(
           <List.Item
