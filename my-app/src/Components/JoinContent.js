@@ -54,7 +54,6 @@ class JoinContent extends Component {
 
   redirectMe(){
     if(this.state.redirect == true){
-      console.log("WE ARE ADDING USER AND REDIRECTING")
       MyFire.addUserToGroup(this.state.user, this.props.group)
       return(
       <Redirect to={{

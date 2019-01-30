@@ -66,7 +66,7 @@ class EventDisplay extends Component {
                 title={<a>{events[key].name}</a>}/>
               <p style = {{float:"left"}}>time: <em className = "time">{time}</em></p>
               {(events[key].location) ? (<p>location: <em>{events[key].location}</em></p>) : <div />}
-              <p className = "howMany">{Object.keys(events[key].people).length - 1} people are going</p>
+              <p className = "howMany">{Object.keys(events[key].people).length - 1} / X spots filled</p>
           </List.Item>
         )});
 

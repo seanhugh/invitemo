@@ -35,14 +35,14 @@ class Home extends Component {
   async componentDidMount(){
 
     // Set the initial active group
-    if(this.props.data.userData.groups){
+    if(this.props.active_group){
+    this.setState({
+      active_group: this.props.active_group.active_group
+    }) else if(this.props.data.userData.groups){
       let keys = Object.keys(this.props.data.userData.groups)
 
-      if(this.props.active_group){
-        this.setState({
-          active_group: this.props.active_group.active_group
-        });
-      } else if (keys.length > 0){
+
+      } if (keys.length > 0){
         this.setState({
           active_group: keys[0]
         });
