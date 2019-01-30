@@ -38,11 +38,11 @@ class Home extends Component {
     if(this.props.active_group){
     this.setState({
       active_group: this.props.active_group.active_group
-    }) else if(this.props.data.userData.groups){
+    })}
+    else if(this.props.data.userData.groups){
       let keys = Object.keys(this.props.data.userData.groups)
 
-
-      } if (keys.length > 0){
+      if (keys.length > 0){
         this.setState({
           active_group: keys[0]
         });
