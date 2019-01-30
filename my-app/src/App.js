@@ -24,28 +24,31 @@ class App extends Component {
                     logout: this.logout.bind(this)
                   }};
 
+    this.SetUpGroup = this.SetUpGroup.bind(this);
+    this.login = this.login.bind(this);
+
 
     MyFire.setCallBackFunctionApp(this.updateState.bind(this));
   }
 
   componentDidMount() {
     // Check the login status of the user
+    console.log("CHECKING LOGIN")
     this.check_login();
   }
 
   // set the login options
   async login(){
     let [user, token] = await MyFire.loginWindow();
-    this.check_login();
+    let d = await this.check_login();
   }
 
   async check_login(){
     let user = await MyFire.currentUser();
     if (user){
       let userData = await MyFire.getUserData(user.uid);
-      if (userData.groups == null){
-        userData.groups = {}
-      }
+      console.log("USERDATA IS THIS")
+      console.log(userData)
       this.setState({
         user: user.uid,
         userData: userData
@@ -71,7 +74,7 @@ class App extends Component {
   SetUpGroup({match}) {
   return (
       <div>
-        <JoinGroup group={match.params.id} />
+        <JoinGroup group={match.params.id} login = {this.login} user={this.state.userData}/>
       </div>
     );
   }

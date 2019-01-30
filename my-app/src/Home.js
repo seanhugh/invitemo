@@ -35,17 +35,20 @@ class Home extends Component {
   async componentDidMount(){
 
     // Set the initial active group
-    let keys = Object.keys(this.props.data.userData.groups)
+    if(this.props.data.userData.groups){
+      let keys = Object.keys(this.props.data.userData.groups)
 
-    if(this.props.active_group){
-      this.setState({
-        active_group: this.props.active_group.active_group
-      });
-    } else if (keys.length > 0){
-      this.setState({
-        active_group: keys[0]
-      });
+      if(this.props.active_group){
+        this.setState({
+          active_group: this.props.active_group.active_group
+        });
+      } else if (keys.length > 0){
+        this.setState({
+          active_group: keys[0]
+        });
+      }
     }
+
 
     //update group stuff on initial load:
     let groupData = await MyFire.updateGroups(this.props.data.userData.groups);
@@ -85,6 +88,8 @@ class Home extends Component {
           //   <Search placeholder="Search for new groups to join!" />
           // </div>
   render() {
+    console.log("home props")
+    console.log(this.props)
     return (
       <div>
       <Row className = "full_height">

@@ -21,6 +21,8 @@ class MyAvatar extends Component {
   }
 
   componentDidMount(){
+    console.log("avatar porops")
+    console.log(this.props)
     this.setState({
       name: this.getFirstWord(this.props.name),
       letter: this.getFirstLetter(this.props.name)

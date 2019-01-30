@@ -11,9 +11,7 @@ class JoinContent extends Component {
 
     this.state = {user: null,
                   redirect: false,
-                  name: ""}
-
-    this.login = this.login.bind(this);
+                  name: null}
 
     this.joinTheGroup = this.joinTheGroup.bind(this);
 
@@ -40,30 +38,23 @@ class JoinContent extends Component {
 
   async joinTheGroup(){
 
-    // If user has not logged in, bring up the window
-    if(!this.state.user){
-      await this.login()
-    }
-    if(this.state.user){
+    await this.props.login()
+
+    let user = await MyFire.currentUser();
+
+    if(user){
+      console.log("WE HAVE USER:")
+      console.log(user)
       this.setState({
         redirect: true
       });
     }
   }
 
-  async login(){
-    let [user, token] = await MyFire.loginWindow();
-
-    // Do we even need this line of code? To double check?
-    let user_real = await MyFire.currentUser();
-    this.setState({
-      user: user_real.uid
-    });
-  }
 
   redirectMe(){
     if(this.state.redirect == true){
-      console.log("THIS PART IS RUN")
+      console.log("WE ARE ADDING USER AND REDIRECTING")
       MyFire.addUserToGroup(this.state.user, this.props.group)
       return(
       <Redirect to={{

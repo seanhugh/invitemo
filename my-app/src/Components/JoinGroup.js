@@ -43,7 +43,7 @@ class JoinGroup extends Component {
     return(
       <div>
       {this.renderRedirect()}
-        <JoinContent group = {this.props.group}/>
+        <JoinContent group = {this.props.group} login={this.props.login} />
       </div>
       )
   }

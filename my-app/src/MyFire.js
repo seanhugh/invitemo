@@ -95,17 +95,9 @@ class MyFire {
     // Write the new post's data simultaneously in the posts list and the user's post list.
     var updates = {};
 
-    let dbRef = this.dbRef;
-
-    this.dbRef.child('user').once('value', function(snapshot) {
-      if (snapshot.hasChild(uid)) {
-      } else{
-
-          updates['/user/' + uid] = postData;
-          dbRef.update(updates);
-
-      }
-    });
+    updates['/user/' + uid + '/email'] = email;
+    updates['/user/' + uid + '/name'] = name;
+    this.dbRef.update(updates);
   }
 
   // Given a user ID, retrieve his data from the db
