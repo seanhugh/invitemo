@@ -86,7 +86,7 @@ class App extends Component {
     <Router>
       <div>
 
-        <Route exact path="/" render={props => (<Default  props={props} user = {myUser} data={myState}/>)}     />
+        <Route exact path="/" render={props => (<Default  props={props} user = {myUser} data={myState}/>)} />
         <Route path="/join/:id" component={this.SetUpGroup} />
       </div>
     </Router>

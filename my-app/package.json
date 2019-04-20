@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.11.6",
     "firebase": "^5.7.1",
+    "firebase-tools": "^6.7.0",
     "moment": "^2.23.0",
     "react": "^16.7.0",
     "react-clipboard.js": "^2.0.2",

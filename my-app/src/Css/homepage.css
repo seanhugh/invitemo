@@ -1,0 +1,95 @@
+.homepage{
+	background: #FF6B62;
+	min-height:100vh;
+	overflow: hidden;
+
+}
+
+.layout{
+    background: rgba(0,0,0,0)!important;
+    padding: 10px;
+    max-width: 1400px;
+}
+
+.header{
+    background: rgba(0,0,0,0)!important;
+}
+
+.footer{
+    background: rgba(0,0,0,0)!important;
+}
+
+.logo {
+    float: left;
+    width: 160px;
+    background: none;
+  }
+
+  .ant-layout-header {
+    padding: 0 0px!important;
+}
+
+li.ant-menu-item, li.ant-menu-item:hover {
+    background: #FF6B62!important;
+}
+
+li.ant-menu-item.ant-menu-item-selected {
+	    background: #FF6B62!important;
+}
+
+.headerh1{
+	font-family: Poppins;
+	color: white;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.subtitle{
+	font-family: Poppins;
+	color: #FEDFDB;
+	font-size: 17px;
+}
+
+.leftArea{
+	padding-top: 150px;
+}
+
+.subtitleArea {
+    border-left: 5px solid #FCFD6C;
+    padding-left: 20px;
+}
+
+.content{
+    padding-top: 80px;
+}
+
+img.side_image {
+    width: 900px;
+    position: absolute;
+    right: -350px;
+}
+
+
+.myfancybutton {
+    width: 200px;
+    text-align: center;
+    height: 67px;
+    background: white;
+    border-radius: 115px;
+    line-height: 4.9;
+    font-family: Poppins;
+    font-weight: 600;
+    color: #FF6B62;
+    margin-top: 60px;
+    cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.myfancybutton:hover{
+	   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.contactUs{
+	font-size: 17px;
+}
