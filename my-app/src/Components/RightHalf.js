@@ -87,30 +87,45 @@ class RightHalf extends Component {
 
 
           <Header className="header">
-
-            {(this.state.isadmin) ? <ShareButton type = {1} group={this.props.active_group}/> : <div/>}
               
 
+            {(this.state.isadmin) ? 
             <div className="titleBlock">
               { this.state.group.metadata.name ?
               <h3 className="pageTitle">{this.state.group.metadata.name}</h3> : <div />
               }
               <InfoButton data = {this.state} group={this.props.active_group} isadmin={this.state.isadmin} />
             </div>
+            : <div/>}
 
             <MyAvatar name = {this.props.name} logOut = {this.props.logout} />
 
           </Header>
           <div className = "eventContainer">
+
+
+            { this.state.group.metadata.name ?
+              <h1 className="bigTitle">{this.state.group.metadata.name} Events</h1> : <h1 className="bigTitle">Current Events</h1>
+              }
+
+            {(this.state.isadmin) ? <CreateEvent uid = {this.props.uid} guid ={this.props.active_group}/> : <div/>}
+            
+
+
+
             <div className= "eventRestriction">
               <EventDisplay events={this.state.events} uid = {this.props.uid}/>
             </div>
           </div>
 
-        <div className = "eventArea">
-          {this.state.isadmin ? (<div className = "eventCreateBar">
-            <CreateEvent uid = {this.props.uid} guid ={this.props.active_group}/></div>) : <div />}
-        </div>
+
+
+        
+          {this.state.isadmin ? 
+
+            (<div className = "eventArea"><div className = "eventCreateBar">
+            <ShareButton type = {1} group={this.props.active_group}/></div></div>) : <div />}
+        
 
       </Col>
     );

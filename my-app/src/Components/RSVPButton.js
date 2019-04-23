@@ -27,14 +27,14 @@ class RSPVButton extends Component {
 
   render(){
     return(
-      <div>
+      <div className="RSVPDIV">  
         {(this.props.eventData[this.props.keyName] > 0) ?
 
         ((this.props.eventData[this.props.keyName] == 3) ?
-        <Button style = {{cursor: "auto"}} disabled>Event Creator</Button> :
-        <Button className="rsvpButton" type="dashed" ghost onClick={this.unrsvpMe}>Going</Button>) :
+        <div className = "myCoolButton disabled">Event Creator</div> :
+        <div className="myCoolButton cancel" onClick={this.unrsvpMe}>Cancel</div>) :
 
-        <Button onClick={this.rsvpMe}>RSVP</Button>}
+        <div className = "myCoolButton" onClick={this.rsvpMe}>RSVP</div>}
       </div>
       )
   }

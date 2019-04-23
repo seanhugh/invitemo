@@ -8,8 +8,8 @@
 }
 
 .right_col {
-  background-color: #F9F9F9;
-  background: #F9F9F9;
+  background-color: #F4F4F4;
+  background: #F4F4F4;
 }
 
 .settingsIcon {
@@ -167,8 +167,8 @@ span.ant-time-picker {
 
 .eventButton {
     margin-top: 15px;
-    margin-right: 15px;
-    float: right;
+    margin-left: 30px;
+    float: left;
 }
 
 .eventContainer {
@@ -176,10 +176,11 @@ span.ant-time-picker {
     overflow: auto;
 }
 
-.eventRestriction{
+.eventRestriction {
     width: 900px;
-    margin-left: 50px;
-
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:115px;
 }
 
 .ant-list-item.Event {
@@ -187,11 +188,10 @@ span.ant-time-picker {
     padding: 25px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border: 1px solid #e8e8e8;
 }
 
-.ant-list-split .ant-list-item.Event:last-child {
-    border-bottom: 1px solid #e8e8e8;;
+.ant-list-split .ant-list-item.Event {
+    border-bottom: 1px solid rgba(0,0,0,0);
 }
 
 .howMany{
@@ -298,8 +298,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .ant-btn-primary:hover, .ant-btn-primary:focus {
     color: #fff;
-    background-color: #FFA19C!important;
-    border-color: #FFA19C!important;
+    background-color: #E2463C!important;
+    border-color: #E2463C!important;
 }
 
 .infoParent {
@@ -316,11 +316,117 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .settingsIcon3 {
-    margin-left: 20px;
-    margin-top: 15px;
+    float: left;
+}
+
+h1.bigTitle {
+    font-weight: 700;
+    color: #363841;
+    font-size: 40px;
+    padding-left: 100px;
+    float: left;
+}
+
+.eventContainer{
+    padding-top: 50px;
+}
+
+.Event {
+    background: white;
+    border-radius: 10px;
+    padding: 40px 30px;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.Event h4 {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.rightSide {
+    margin-left: auto;
+    order: 2;
+    align-items: center;
+    display: flex;
+}
+
+.RSVPDIV{
     float: right;
-    position: absolute!important;
-    right: 20px;
+}
+
+.myCoolButton {
+    border-radius: 11px;
+    padding: 10px;
+    line-height: 28px;
+    padding: 10px 20px;
+    background: #FF6B62;
+    color: white;
+    cursor: pointer;
+}
+
+.myCoolButton:hover {
+    background: #E2463C;
+}
+
+.myCoolButton p{
+    margin-bottom: 0px;
+    font-family: Poppins;
+    font-size: 14px;
+    color: white;
+}
+
+.howManyHolder {
+    pointer-events: none;
+    background: #F0F1F8;
+    margin-right: 15px;
+    cursor: default;
+}
+
+p.howMany {
+    color: #9FA2B6;
+}
+
+.disabled{
+    pointer-events: none;
+    background: #F0F1F8;
+    color: #9FA2B6;
+}
+
+.Event.Green{
+    background: #76945F;
+}
+
+.cancel {
+    background: #9A9A9A;
+}
+
+.cancel:hover {
+    background: #888888;
+}
+
+.Event.Green .howManyHolder {
+    background: none;
+    border: 1px solid #F0F1F8;
+    color: #F0F1F8;
+}
+
+.Event.Green .howManyHolder p{
+    color: #F0F1F8;
+}
+
+.Event.Green h4 {
+    color: white;
+}
+
+.timeBlock {
+    font-weight: 700;
+    color: #9FA2B6;
+    font-size: 16px;
+}
+
+.Event.Green .timeBlock{
+    color: #E0E4FF;
 }
 
 /* FIXING ALL OF THAT RESPONSIVE LAYOUT SHIT */

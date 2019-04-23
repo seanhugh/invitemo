@@ -103,7 +103,6 @@ class Home extends Component {
 
           <div className="groupListHeader">
             <p className="grouListHeaderText">My Groups</p>
-            <CreateGroupForm uid={this.props.data.user} />
           </div>
 
           {(!this.isEmpty(this.state.group_data)) ? (<GroupList groups = {this.state.group_data} uid = {this.props.data.user} selectGroup = {this.selectGroup}/>) :
