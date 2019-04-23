@@ -1,5 +1,5 @@
 .homepage{
-	background: #FF6B62;
+	background: #FF5E5A;
 	min-height:100vh;
 	overflow: hidden;
 
@@ -30,11 +30,11 @@
 }
 
 li.ant-menu-item, li.ant-menu-item:hover {
-    background: #FF6B62!important;
+    background: #FF5E5A!important;
 }
 
 li.ant-menu-item.ant-menu-item-selected {
-	    background: #FF6B62!important;
+	    background: #FF5E5A!important;
 }
 
 .headerh1{
@@ -79,7 +79,7 @@ img.side_image {
     line-height: 4.9;
     font-family: Poppins;
     font-weight: 600;
-    color: #FF6B62;
+    color: #FF5E5A;
     margin-top: 60px;
     cursor: pointer;
       box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);

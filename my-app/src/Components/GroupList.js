@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 // Import Ant Design Components
 import { List, Avatar, Col } from 'antd';
 import '../Css/grouplist.css'
+import CreateNewGroupBig from './CreateNewGroupBig';
+
 
 class GroupList extends Component {
 
@@ -21,7 +23,7 @@ class GroupList extends Component {
         let selectG = this.props.selectGroup;
         let elements = Object.keys(groups).map(function(key){
           return(
-            <List.Item key={key} onClick={selectG.bind(null, key)}>
+            <List.Item className = "groupList" key={key} onClick={selectG.bind(null, key)}>
 
             <List.Item.Meta
               title={<a>{groups[key].name}</a>}
@@ -41,6 +43,7 @@ class GroupList extends Component {
         <List>
         {this.createGroupList()}
         </List>
+        <CreateNewGroupBig uid={this.props.uid} />
       </div>
     );
   }

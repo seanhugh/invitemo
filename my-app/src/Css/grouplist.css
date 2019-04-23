@@ -9,3 +9,9 @@
 .allgroups.left .ant-list-item:hover {
     background: rgba(0, 0, 0, .10);
 }
+
+.groupList a {
+    font-family: Poppins;
+    font-weight: 400;
+    color: #363841!important;
+}

@@ -66,8 +66,8 @@ class InfoButton extends Component {
 
   render() {
     return (
-      <div>
-        <Button shape="circle" icon="info" className="settingsIcon3" onClick={this.showDrawer}/>
+      <div className="infoParent">
+        <Button shape="circle" icon="info" className="settingsIcon4" onClick={this.showDrawer}/>
         <Drawer
           width={640}
           placement="right"

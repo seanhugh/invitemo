@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MyFire from '../MyFire';
 import InfoButton from './InfoButton';
+import MyAvatar from './MyAvatar';
 import EventDisplay from './EventDisplay';
 import ShareButton from './ShareButton';
 import CreateEvent from './CreateEvent';
@@ -87,13 +88,17 @@ class RightHalf extends Component {
 
           <Header className="header">
 
-
-          <InfoButton data = {this.state} group={this.props.active_group} isadmin={this.state.isadmin} />
-
             {(this.state.isadmin) ? <ShareButton type = {1} group={this.props.active_group}/> : <div/>}
+              
+
+            <div className="titleBlock">
               { this.state.group.metadata.name ?
-              <h3>{this.state.group.metadata.name}</h3> : <div />
+              <h3 className="pageTitle">{this.state.group.metadata.name}</h3> : <div />
               }
+              <InfoButton data = {this.state} group={this.props.active_group} isadmin={this.state.isadmin} />
+            </div>
+
+            <MyAvatar name = {this.props.name} logOut = {this.props.logout} />
 
           </Header>
           <div className = "eventContainer">

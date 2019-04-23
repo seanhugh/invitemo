@@ -116,7 +116,7 @@ class CreateGroupForm extends Component {
   render() {
     return (
       <div>
-        <Button type = "primary" shape="circle" icon="plus" className="settingsIcon2" onClick={this.showModal}/>
+        <Button shape="circle" icon="plus" className="settingsIcon2" onClick={this.showModal}/>
         <CollectionCreateForm
           wrappedComponentRef={this.saveFormRef}
           visible={this.state.visible}

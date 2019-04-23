@@ -4,16 +4,12 @@
 
 .left_col {
   background-color: white;
-  outline: 1px #d1d1d1 solid;
-    background: white;
+  background: white;
 }
 
-.right_col .header {
-  background-color: #eaeaea
-}
-
-.left_col .header {
-  background-color: #ffaa45
+.right_col {
+  background-color: #F9F9F9;
+  background: #F9F9F9;
 }
 
 .settingsIcon {
@@ -22,14 +18,6 @@
     top: 16px!important;
     cursor: pointer;
 }
-
-.settingsIcon2 {
-    position: absolute!important;
-    right: 18px;
-    top: 16px!important;
-    cursor: pointer;
-}
-
 /* Putting the Icons on the right side of the header */
 
 .settingsIcon3 {
@@ -86,25 +74,6 @@
 .groupEl:hover {
     background-color: #e8e8e8;
     cursor: pointer;
-}
-
-
-.settingsIcon2 {
-    color: #fff!important;
-    background-color: #d8842a!important;
-    border-color: #d8842a!important;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12)!important;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045)!important;
-}
-
-.settingsIcon2, .settingsIcon2:active,
-.settingsIcon2:focus {
-    background-color: #d8842a!important;
-    border-color: #d8842a!important;
-}
-.settingsIcon2:hover {
-    background-color: #f2923b!important;
-    border-color: #f2923b!important;
 }
 
 .collection-create-form_last-form-item {
@@ -250,3 +219,131 @@ span.ant-time-picker {
     background-color: #fff;
     border-color: white!important;
 }
+
+
+/*. New UI stuff */
+
+img.whitelogo {
+    margin: 40px 0px 40px 20px;
+    width: 150px;
+}
+
+.groupListHeader {
+    background: rgba(255,107,98,.1);
+    line-height: 40px;
+}
+
+p.grouListHeaderText {
+    margin-bottom: 0px;
+    font-family: Poppins;
+    font-weight: 800;
+    color: #363841;
+    float: left;
+    font-size: 12px;
+}
+
+.groupListHeader {
+    padding: 0px 20px;
+}
+
+.settingsIcon2{
+    margin-top: 3px;
+    float: right;
+    border-radius: 4px!important;
+}
+
+button.ant-btn.settingsIcon2.ant-btn-circle.ant-btn-icon-only {
+    background: rgba(0,0,0,0);
+    border: 2px solid #DFE1EC;
+}
+
+.largeBoi {
+    float: none;
+    width: 100%!important;
+    margin-bottom: 10px;
+}
+
+.largeBoiContainer {
+    padding: 20px;
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Poppins;
+}
+
+.pageTitle {
+    float: left;
+    font-weight: 700;
+}
+
+.settingsIcon4{
+    float: left;
+}
+
+.header.ant-layout-header {
+    width: 100%;
+    display: flex;
+}
+
+
+/*Button stuff cause im too lazy to figure out the propper way*/
+    .ant-btn-primary {
+    color: #fff;
+    background-color: #FF5E5A!important;
+    border-color: #FF5E5A!important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+}
+
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+    color: #fff;
+    background-color: #FFA19C!important;
+    border-color: #FFA19C!important;
+}
+
+.infoParent {
+    float: left;
+    padding: 15px;
+}
+
+.pageTitle{
+    float: left;
+}
+
+.titleBlock{
+    margin: auto;
+}
+
+.settingsIcon3 {
+    margin-left: 20px;
+    margin-top: 15px;
+    float: right;
+    position: absolute!important;
+    right: 20px;
+}
+
+/* FIXING ALL OF THAT RESPONSIVE LAYOUT SHIT */
+
+
+
+/*. DESKTOP STUFF */
+
+    .ant-row{
+        display: flex!important;
+    }
+
+    .ant-col-4.left_col.full_height {
+        width: 300px;
+    }
+
+    .ant-col-20.right_col.full_height {
+        overflow: hidden;
+        flex: 1 0 0;
+    }
+
+
+/*. MOBILE STUFF */
+
+
+

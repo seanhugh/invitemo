@@ -6,11 +6,15 @@ import RightHalf from './Components/RightHalf';
 
 // Import Create Group Functionality
 import CreateGroupForm from './Components/CreateGroupForm';
+import CreateNewGroupBig from './Components/CreateNewGroupBig';
 import MyAvatar from './Components/MyAvatar';
 import GroupList from './Components/GroupList';
 
 // Import Ant Design Components
 import { Input, Layout, Row, Col, Button } from 'antd';
+
+// Import redlogo
+import Whitelogo from './Img/whitelogo.svg'
 
 const { Header, Content, Sider } = Layout;
 const Search = Input.Search;
@@ -94,20 +98,20 @@ class Home extends Component {
       <div>
       <Row className = "full_height">
         <Col span={4} className = "left_col full_height">
-          <Header className="header">
-            <MyAvatar name = {this.props.data.userData.name} logOut = {this.props.data.actions.logout}/>
+
+          <img src={Whitelogo} alt="Logo" className="whitelogo"/>
+
+          <div className="groupListHeader">
+            <p className="grouListHeaderText">My Groups</p>
             <CreateGroupForm uid={this.props.data.user} />
-            <div className="logo" />
-          </Header>
+          </div>
 
-
-          {(!this.isEmpty(this.state.group_data)) ? (<GroupList groups = {this.state.group_data} selectGroup = {this.selectGroup}/>) :
-          (<p>You're not in any groups yet</p>)}
+          {(!this.isEmpty(this.state.group_data)) ? (<GroupList groups = {this.state.group_data} uid = {this.props.data.user} selectGroup = {this.selectGroup}/>) :
+          (<CreateNewGroupBig uid={this.props.data.user} />)}
 
 
         </Col>
-
-        <RightHalf active_group = {this.state.active_group} uid = {this.props.data.user}/>
+        <RightHalf active_group = {this.state.active_group} uid = {this.props.data.user} name = {this.props.data.userData.name} logout = {this.props.data.actions.logout}/>
       </Row>
 
       </div>
@@ -116,3 +120,13 @@ class Home extends Component {
 }
 
 export default Home;
+
+
+// Commented out things
+
+//  old header:
+// <Header className="header">
+            // <MyAvatar name = {this.props.data.userData.name} logOut = {this.props.data.actions.logout}/>
+            // <CreateGroupForm uid={this.props.data.user} />
+            // <div className="logo" />
+          // </Header>
