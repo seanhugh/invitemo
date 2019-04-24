@@ -3,6 +3,7 @@ import MyFire from '../MyFire';
 import InfoButton from './InfoButton';
 import MyAvatar from './MyAvatar';
 import EventDisplay from './EventDisplay';
+import ShareEventArea from './ShareEventArea';
 import ShareButton from './ShareButton';
 import CreateEvent from './CreateEvent';
 
@@ -115,16 +116,10 @@ class RightHalf extends Component {
 
             <div className= "eventRestriction">
               <EventDisplay events={this.state.events} uid = {this.props.uid}/>
+              {(this.state.isadmin) ? 
+              <ShareEventArea group={this.props.active_group}/> : <div />}
             </div>
           </div>
-
-
-
-        
-          {this.state.isadmin ? 
-
-            (<div className = "eventArea"><div className = "eventCreateBar">
-            <ShareButton type = {1} group={this.props.active_group}/></div></div>) : <div />}
         
 
       </Col>
@@ -133,3 +128,9 @@ class RightHalf extends Component {
 }
 
 export default RightHalf;
+
+        
+          // {this.state.isadmin ? 
+
+          //   (<div className = "eventArea"><div className = "eventCreateBar">
+          //   <ShareButton type = {1} group={this.props.active_group}/></div></div>) : <div />}

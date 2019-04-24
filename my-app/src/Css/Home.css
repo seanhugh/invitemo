@@ -429,6 +429,36 @@ p.howMany {
     color: #E0E4FF;
 }
 
+.shareEventArea {
+    border-radius: 10px;
+    padding: 40px 30px;
+    margin-bottom: 15px;
+    border: 1px dashed #CACACA;
+    display: flex;
+    flex-direction: column;
+        text-align: center;
+}
+
+.shareEventArea h4 {
+    color: #9FA2B6;
+}
+
+.shareEventArea input.ant-input {
+    background: none;
+}
+
+.shareEventArea button.clipboard {
+    max-width: 550px;
+    margin: auto;
+}
+
+.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
+    border-color: rgba(0,0,0,0)!important;
+    border-right-width: 1px !important;
+    background-color: rgba(0,0,0,.05);
+}
+
+
 /* FIXING ALL OF THAT RESPONSIVE LAYOUT SHIT */
 
 
