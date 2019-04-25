@@ -4,6 +4,7 @@ import MyFire from './MyFire';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import JoinGroup from './Components/JoinGroup'
 import Default from './Components/Default';
+import Home from './Home';
 
 // Output the app
 
@@ -72,9 +73,12 @@ class App extends Component {
   }
 
   SetUpGroup({match}) {
+  // Now we have the group id, and we want the user to be able to annonymously use said group
+
+  // <JoinGroup group={match.params.id} login = {this.login} user={this.state.userData}/>
   return (
       <div>
-        <JoinGroup group={match.params.id} login = {this.login} user={this.state.userData}/>
+        <Home active_group = {match.params.id} login = {this.login} mode="anon"/>
       </div>
     );
   }

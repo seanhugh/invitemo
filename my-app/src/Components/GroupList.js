@@ -21,6 +21,8 @@ class GroupList extends Component {
       if(this.props.groups){
         let groups = this.props.groups;
         let selectG = this.props.selectGroup;
+         console.log("IM HERE HWY IS THIS NULL")
+        console.log(groups)
         let elements = Object.keys(groups).map(function(key){
           return(
             <List.Item className = "groupList" key={key} onClick={selectG.bind(null, key)}>
@@ -40,6 +42,7 @@ class GroupList extends Component {
 
 
   render() {
+    console.log(this.props)
     return (
       <div className = "allgroups left">
         <List>

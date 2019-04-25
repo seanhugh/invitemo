@@ -31,9 +31,47 @@ class RightHalf extends Component {
 
   }
 
+  async componentDidMount(){
+    if (this.props.mode == "anon"){
+      // Download the group data if the user is anonymous from a join call
+
+      console.log("I WILL DOWNLOAD HERE")
+
+       // Download the data for that group (saves it in the group section of state)
+      let data = await MyFire.downloadRightHalf(this.props.active_group);
+      this.setState(data)
+
+      // Loop through all users in that group and download their metadata
+      let userEventData = await MyFire.groupUserData(this.state.group);
+      this.setState(userEventData)
+
+      // Loop through all events in that group and download their metadata
+      let groupEventData = await MyFire.groupEventData(this.state.group);
+      this.setState(groupEventData)
+
+      // Update whether or not the current user is an admin
+      if (data.group.users[this.props.uid] == 2 || data.group.users[this.props.uid] == 3){
+        this.setState({
+          isadmin: true
+        });
+      } else {
+        this.setState({
+          isadmin: false
+        });
+      }
+
+      // Create a listener for the group so that it updates as values change
+      MyFire.createGroupListener(this.props.active_group);
+
+      // TO BE DONE: Download the data for all events associated with the group
+
+    }
+  }
+
  // On active group change, download the appropriate data for said group
   async componentDidUpdate(prevProps) {
-     if (prevProps.active_group !== this.props.active_group) {
+
+      if (prevProps.active_group !== this.props.active_group) {
 
       // Download the data for that group (saves it in the group section of state)
       let data = await MyFire.downloadRightHalf(this.props.active_group);
@@ -63,7 +101,8 @@ class RightHalf extends Component {
 
       // TO BE DONE: Download the data for all events associated with the group
 
-     }
+    }
+
    }
 
    // Run on callback from group data
@@ -90,7 +129,7 @@ class RightHalf extends Component {
           <Header className="header">
               
 
-            {(this.state.isadmin) ? 
+            {(this.state.isadmin && this.props.mode != "anon") ? 
             <div className="titleBlock">
               { this.state.group.metadata.name ?
               <h3 className="pageTitle">{this.state.group.metadata.name}</h3> : <div />
@@ -99,7 +138,8 @@ class RightHalf extends Component {
             </div>
             : <div/>}
 
-            <MyAvatar name = {this.props.name} logOut = {this.props.logout} />
+            {(this.props.mode != "anon") ?
+            <MyAvatar name = {this.props.name} logOut = {this.props.logout} /> : <div /> }
 
           </Header>
           <div className = "eventContainer">
@@ -115,7 +155,7 @@ class RightHalf extends Component {
 
 
             <div className= "eventRestriction">
-              <EventDisplay events={this.state.events} uid = {this.props.uid}/>
+              <EventDisplay events={this.state.events} uid = {this.props.uid} login={this.props.login} mode={this.props.mode} active_group={this.props.active_group}/>
               {(this.state.isadmin) ? 
               <ShareEventArea group={this.props.active_group}/> : <div />}
             </div>

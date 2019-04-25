@@ -54,22 +54,25 @@ class Home extends Component {
     }
 
 
-    //update group stuff on initial load:
-    let groupData = await MyFire.updateGroups(this.props.data.userData.groups);
-    // Add the downloaded metaData to the state
-    this.setState(groupData);
+    if (this.props.userData){
+      //update group stuff on initial load:
+      let groupData = await MyFire.updateGroups(this.props.data.userData.groups);
+      // Add the downloaded metaData to the state
+      this.setState(groupData);
+    }
 
   }
 
   async componentDidUpdate(prevProps){
 
-    if (prevProps.data.userData.groups !== this.props.data.userData.groups) {
-    // Update the state group data on New prop change
-    // Get group data for the given grouplist
-    let groupData = await MyFire.updateGroups(this.props.data.userData.groups);
-    // Add the downloaded metaData to the state
-    this.setState(groupData);
-
+    if (this.props.data){
+          if (prevProps.data.userData.groups !== this.props.data.userData.groups) {
+              // Update the state group data on New prop change
+              // Get group data for the given grouplist
+              let groupData = await MyFire.updateGroups(this.props.data.userData.groups);
+              // Add the downloaded metaData to the state
+              this.setState(groupData);
+          }
     }
   }
 
@@ -92,11 +95,12 @@ class Home extends Component {
           //   <Search placeholder="Search for new groups to join!" />
           // </div>
   render() {
-    console.log("home props")
-    console.log(this.props)
     return (
       <div>
       <Row className = "full_height">
+
+
+      {(this.props.mode != "anon") ?
         <Col span={4} className = "left_col full_height">
 
           <img src={Whitelogo} alt="Logo" className="whitelogo"/>
@@ -105,12 +109,21 @@ class Home extends Component {
             <p className="grouListHeaderText">My Groups</p>
           </div>
 
+        <div>
           {(!this.isEmpty(this.state.group_data)) ? (<GroupList groups = {this.state.group_data} uid = {this.props.data.user} selectGroup = {this.selectGroup}/>) :
           (<CreateNewGroupBig uid={this.props.data.user} />)}
+        </div>
+
 
 
         </Col>
-        <RightHalf active_group = {this.state.active_group} uid = {this.props.data.user} name = {this.props.data.userData.name} logout = {this.props.data.actions.logout}/>
+
+        : <div />}
+
+        {this.props.data ?
+        (<RightHalf active_group = {this.state.active_group} uid = {this.props.data.user} name = {this.props.data.userData.name} logout = {this.props.data.actions.logout}/>) :
+        (<RightHalf active_group = {this.props.active_group} mode={"anon"} login = {this.props.login}/>)
+      }
       </Row>
 
       </div>

@@ -45,6 +45,10 @@ class EventDisplay extends Component {
     let events = this.props.events
     let userEvent = (this.state.userEvent ? this.state.userEvent : {name: 1})
     let uid = this.props.uid
+    let login = this.props.login
+    let mode = this.props.mode
+    let active_group = this.props.active_group
+
     let elements = Object.keys(events).map(function(key){
 
         // Create the time
@@ -71,7 +75,7 @@ class EventDisplay extends Component {
               <div className="howManyHolder myCoolButton">
                 <p className = "howMany">{Object.keys(events[key].people).length - 1} Going</p>
               </div>
-              <RSVPButton uid = {uid} keyName = {key} eventData = {userEvent}  />
+              <RSVPButton uid = {uid} keyName = {key} eventData = {userEvent}  login = {login} mode={mode} active_group={active_group}/>
             </div>
 
 
