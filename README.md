@@ -16,3 +16,11 @@ Invitemo aims to be the the most user-friendly RSVP app, enabling people to RSVP
 ----
 
 ### Screenshots
+
+
+
+#### Invited User
+
+#### Event Creator
+
+![Create Group](https://raw.githubusercontent.com/seanhugh/invitemo/master/RepoImg/3Create_Group.png)
