@@ -7,6 +7,9 @@
   </a>
 </p>
 <br/>
+<p align="center">
+  <a href="#"><img src="https://cdn.rawgit.com/aleen42/badges/master/src/react.svg" alt="React Badge"></a>  <a href="#"><img src="https://img.shields.io/badge/license-AGPLv3-blue.svg" alt="GitHub license"></a> <a href="https://invitemo.com"><img src="https://img.shields.io/website/https/searchneu.com.svg" alt="Website"></a>
+</p>
 
 Invitemo aims to be the the most user-friendly RSVP app, enabling people to RSVP to an event with just 1 click. It also allows organizers to create a new event, and invite friends in less than 5 clicks.
 
