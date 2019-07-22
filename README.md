@@ -1,4 +1,4 @@
-# (invitemo)[www.invitemo.com]
+# [invitemo](www.invitemo.com)
 
 Specifically made for inviting large groups of people to a range of events and receiving.
 
