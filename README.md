@@ -2,7 +2,7 @@
 
 <br/>
 <p align="center">
-  <a href="https://searchneu.com/">
+  <a href="https://invitemo.com/">
     <img alt="Search NEU" src="https://i.imgur.com/qDjhC6x.png" width="400"/>
   </a>
 </p>
