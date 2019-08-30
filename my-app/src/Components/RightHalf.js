@@ -7,9 +7,13 @@ import ShareEventArea from './ShareEventArea';
 import ShareButton from './ShareButton';
 import CreateEvent from './CreateEvent';
 import WhiteLogo from '../Img/whitelogo.svg';
+import SideMenu from './SideMenu';
+
 
 // Import Ant Design Components
-import { Col, Layout, Button } from 'antd';
+import { Col, Layout, Button, Menu, Icon } from 'antd';
+
+const { SubMenu } = Menu;
 
 const { Header, Content, Sider } = Layout;
 
@@ -124,12 +128,12 @@ class RightHalf extends Component {
 
   render() {
     return (
-      <Col span={20} className = "right_col full_height">
+      <div className = "layout_dash right_col">
 
-
+        <div className = "header_back" />  
           <Header className="header">
-              
 
+            <Icon type="menu" className = "menuItem hamburger" style={{ fontSize: '20px' }} />
             <img src={WhiteLogo} alt="Logo" className="home_logo"/>
 
             {(this.state.isadmin && this.props.mode != "anon") ? 
@@ -146,6 +150,9 @@ class RightHalf extends Component {
             <MyAvatar name = {this.props.name} logOut = {this.props.logout} /> : <div /> }
             </div>
           </Header>
+
+          <SideMenu />
+
           <div className = "eventContainer">
 
 
@@ -164,9 +171,8 @@ class RightHalf extends Component {
               <ShareEventArea group={this.props.active_group}/> : <div />}
             </div>
           </div>
-        
 
-      </Col>
+      </div>
     );
   }
 }

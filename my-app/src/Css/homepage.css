@@ -64,6 +64,7 @@
     width: 90px;
     background: none;
     cursor: pointer;
+    z-index: 5;
 
     -webkit-transition: opacity 0.1s ease-in-out;
    -moz-transition: opacity 0.1s ease-in-out;
@@ -133,6 +134,7 @@ img.side_image {
     background: #001529;
     position: absolute;
     left: 0;
+    top: 0;
 }
 
 .header{

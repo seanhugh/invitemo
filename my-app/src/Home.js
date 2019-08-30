@@ -99,27 +99,6 @@ class Home extends Component {
       <div>
       <Row className = "full_height">
 
-
-      {(this.props.mode != "anon") ?
-        <Col span={4} className = "left_col full_height">
-
-          <img src={Whitelogo} alt="Logo" className="whitelogo"/>
-
-          <div className="groupListHeader">
-            <p className="grouListHeaderText">My Groups</p>
-          </div>
-
-        <div>
-          {(!this.isEmpty(this.state.group_data)) ? (<GroupList groups = {this.state.group_data} uid = {this.props.data.user} selectGroup = {this.selectGroup}/>) :
-          (<CreateNewGroupBig uid={this.props.data.user} />)}
-        </div>
-
-
-
-        </Col>
-
-        : <div />}
-
         {this.props.data ?
         (<RightHalf active_group = {this.state.active_group} uid = {this.props.data.user} name = {this.props.data.userData.name} logout = {this.props.data.actions.logout}/>) :
         (<RightHalf active_group = {this.props.active_group} mode={"anon"} login = {this.props.login}/>)
@@ -142,3 +121,25 @@ export default Home;
             // <CreateGroupForm uid={this.props.data.user} />
             // <div className="logo" />
           // </Header>
+
+
+
+ // {(this.props.mode != "anon") ?
+ //        <Col span={4} className = "left_col full_height">
+
+ //          <img src={Whitelogo} alt="Logo" className="whitelogo"/>
+
+ //          <div className="groupListHeader">
+ //            <p className="grouListHeaderText">My Groups</p>
+ //          </div>
+
+ //        <div>
+ //          {(!this.isEmpty(this.state.group_data)) ? (<GroupList groups = {this.state.group_data} uid = {this.props.data.user} selectGroup = {this.selectGroup}/>) :
+ //          (<CreateNewGroupBig uid={this.props.data.user} />)}
+ //        </div>
+
+
+
+ //        </Col>
+
+ //        : <div />}

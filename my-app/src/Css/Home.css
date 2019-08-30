@@ -1,5 +1,6 @@
 .full_height {
     height: 100vh!important;
+    background: #F4F4F4;
 }
 
 .left_col {
@@ -80,6 +81,32 @@
 .allgroups{
   flex: 2 ;
   overflow: auto;
+}
+
+
+.mySlider{
+    height: calc(100vh - 64px);;
+    position: absolute;
+}
+
+.hamburger {
+    color: white;
+    margin-top: 22.5px;
+    padding-right: 20px;
+    display: none!important;
+}
+
+.menuItem {
+    z-index: 5;
+    cursor: pointer;
+}
+
+.menuItem:hover {
+    opacity: .8;
+
+    -webkit-transition: opacity 0.1s ease-in-out;
+   -moz-transition: opacity 0.1s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
 }
 
 /* THE SCROLLING STUFF */
@@ -171,13 +198,12 @@ span.ant-time-picker {
 .eventContainer {
     flex: 2 1;
     overflow: auto;
+    margin-left: 360px;
 }
 
 .eventRestriction {
-    width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:115px;
+    width: 100%;
+    margin-top:85px;
 }
 
 .ant-list-item.Event {
@@ -319,8 +345,7 @@ h1, h2, h3, h4, h5, h6 {
 h1.bigTitle {
     font-weight: 700;
     color: #363841;
-    font-size: 40px;
-    padding-left: 100px;
+    font-size: 26px;
     float: left;
 }
 
@@ -453,6 +478,14 @@ p.howMany {
     border-color: rgba(0,0,0,0)!important;
     border-right-width: 1px !important;
     background-color: rgba(0,0,0,.05);
+}
+
+.layout_dash{
+    padding: 0px 40px 10px 40px;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
