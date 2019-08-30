@@ -1,89 +1,117 @@
 .homepage{
-	background: #FF5E5A;
+	background: #F4F4F4;
 	min-height:100vh;
 	overflow: hidden;
-
 }
 
 .layout{
     background: rgba(0,0,0,0)!important;
-    padding: 10px;
-    max-width: 1400px;
+    padding: 0px 40px 10px 40px;
+    max-width: 1000px;
 }
 
-.header{
-    background: rgba(0,0,0,0)!important;
+.rightMenu{
+    margin-top: 23px;
+    float: right;
 }
 
-.footer{
-    background: rgba(0,0,0,0)!important;
+.rightMenu p{
+    font-size: 16px;
+    font-family: Poppins;
+    color: #363841;
+    font-weight: 600;
+
+    -webkit-transition: opacity 0.1s ease-in-out;
+   -moz-transition: opacity 0.1s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
 }
 
-.logo {
+.rightMenu p:hover{
+    cursor: pointer;
+    opacity: .7
+}
+
+.twentyspace{
+    height: 20px;
+}
+
+.footer {
+    background: #EBEDF0!important;
+    justify-content: center;
+}
+
+.myemail{
+    padding-top: 35px;
+        font-weight: 600;
+            margin-left: 60px;
     float: left;
-    width: 160px;
+}
+
+.footer_content{
+    padding: 100px 40px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.mail_logo{
+    padding-top: 18px;
+    width: 90px;
+    float: left;
+}
+
+.home_logo {
+    float: left;
+    width: 90px;
     background: none;
+    cursor: pointer;
+
+    -webkit-transition: opacity 0.1s ease-in-out;
+   -moz-transition: opacity 0.1s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
   }
 
-  .ant-layout-header {
+.home_logo:hover {
+    opacity: .8
+  }
+
+.ant-layout-header {
     padding: 0 0px!important;
-}
-
-li.ant-menu-item, li.ant-menu-item:hover {
-    background: #FF5E5A!important;
-}
-
-li.ant-menu-item.ant-menu-item-selected {
-	    background: #FF5E5A!important;
 }
 
 .headerh1{
 	font-family: Poppins;
-	color: white;
-    font-size: 40px;
+	color: #363841;
+    font-size: 32px;
     font-weight: 600;
 }
 
 .subtitle{
 	font-family: Poppins;
-	color: #FEDFDB;
-	font-size: 17px;
+	color: #363841;
+	font-size: 16px;
 }
 
 .leftArea{
-	padding-top: 150px;
+	padding-top: 40px;
+}
+
+.calltoaction{
+    width: 190px;
+    height: 41px!important;
 }
 
 .subtitleArea {
-    border-left: 5px solid #FCFD6C;
+    border-left: 5px solid #C6C6C6;
     padding-left: 20px;
 }
 
 .content{
-    padding-top: 80px;
+    padding-top: 140px;
+    padding-bottom: 160px;
 }
 
 img.side_image {
-    width: 900px;
-    position: absolute;
-    right: -350px;
-}
-
-
-.myfancybutton {
-    width: 200px;
-    text-align: center;
-    height: 67px;
-    background: white;
-    border-radius: 115px;
-    line-height: 4.9;
-    font-family: Poppins;
-    font-weight: 600;
-    color: #FF5E5A;
-    margin-top: 60px;
-    cursor: pointer;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    width: 100%;
 }
 
 .myfancybutton:hover{
@@ -92,4 +120,77 @@ img.side_image {
 
 .contactUs{
 	font-size: 17px;
+}
+
+.rightArea{
+    display: flex;
+    justify-content: center;
+}
+
+.header_back {
+    width: 100%;
+    height: 64px;
+    background: #001529;
+    position: absolute;
+    left: 0;
+}
+
+.header{
+    z-index: 5;
+}
+
+.righButtons {
+    margin-left: auto;
+}
+
+.ant-btn.headerButton:hover, .ant-btn.headerButton:focus, .ant-btn.headerButton:active{
+    color: white;
+    border-color: white;
+    opacity: .8;
+}
+
+/* Making it somewhat responsive */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 930px) {
+
+    .headerh1{
+    font-size: 26px;
+}
+
+.subtitle{
+    font-size: 14px;
+}
+
+.leftArea{
+    padding-top: 35px;
+}
+
+}
+
+@media only screen and (max-width: 767px) {
+
+img.side_image{
+    width: 350px;
+    padding-top: 60px;
+}
+
+.rightArea{
+    display: none;
+
+}
+
+.lastFooterSection{
+    padding-top: 40px;
+}
+
+.myemail{
+            margin-left: 10px;
+}
+
+.content{
+    padding-top: 100px;
+    padding-bottom: 160px;
+}
+
 }

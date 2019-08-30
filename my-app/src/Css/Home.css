@@ -13,9 +13,6 @@
 }
 
 .settingsIcon {
-    position: absolute!important;
-    left: 18px;
-    top: 16px!important;
     cursor: pointer;
 }
 /* Putting the Icons on the right side of the header */
@@ -480,6 +477,5 @@ p.howMany {
 
 
 /*. MOBILE STUFF */
-
 
 

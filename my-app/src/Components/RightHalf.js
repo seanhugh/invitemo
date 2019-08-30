@@ -6,6 +6,7 @@ import EventDisplay from './EventDisplay';
 import ShareEventArea from './ShareEventArea';
 import ShareButton from './ShareButton';
 import CreateEvent from './CreateEvent';
+import WhiteLogo from '../Img/whitelogo.svg';
 
 // Import Ant Design Components
 import { Col, Layout, Button } from 'antd';
@@ -129,6 +130,8 @@ class RightHalf extends Component {
           <Header className="header">
               
 
+            <img src={WhiteLogo} alt="Logo" className="home_logo"/>
+
             {(this.state.isadmin && this.props.mode != "anon") ? 
             <div className="titleBlock">
               { this.state.group.metadata.name ?
@@ -138,9 +141,10 @@ class RightHalf extends Component {
             </div>
             : <div/>}
 
+            <div className = "righButtons">
             {(this.props.mode != "anon") ?
             <MyAvatar name = {this.props.name} logOut = {this.props.logout} /> : <div /> }
-
+            </div>
           </Header>
           <div className = "eventContainer">
 
